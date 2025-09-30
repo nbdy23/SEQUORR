@@ -1,0 +1,7 @@
+# Mobile Fitness App #
+
+## iOS and Android ##
+
+available on the App Store and Google Play
+
+website: www.sequorr.com
