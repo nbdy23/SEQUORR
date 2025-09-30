@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SEQUORR - The App</title>
+    <style>
+        * { 
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: #0A0A0A;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Nav. */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px, 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+            }
+            .logo {
+                font-size: 24px;
+                font-weight: 700;
+                letter-spacing: 2px;
+                color: #00E5FF;
+                text-decoration: none;
+            }
+
+            .nav-links a:hover {
+                color: #00E5FF;
+            }
+
+            /* Hero SECTION */
+            .app-hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 120px 5% 80px;
+                background: radial-gradient(ellipse at center top, rgba(0, 229, 255, 0.1) 0%, transparent 50%);
+            }
+
+            .hero-caption {
+                display: grid;
+                grid-template-columns: 1fr, 1fr;
+                gap: 80px;
+                align-items: center;
+                max-width: 1400px;
+                width: 100%;
+            }
+
+            .hero-text h1 {
+                font-size: 64px;
+                font-weight: 700;
+                margin-bottom: 24px;
+                letter-spacing: -2px;
+                line-height: 1.1;
+            }
+
+            .gradient-text {
+                background: linear-gradient(135deg, #00E5FF 0%, #FF6B35 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .hero-text p {
+                font-size: 20px;
+                color: #8B8D91;
+                line-height: 1.6;
+                margin-bottom: 32px;
+            }
+
+            .cta-button {
+                padding: 18px 48px;
+                background: #00E5FF;
+                color: #0A0A0A;
+                border: none;
+                border-radius: 50px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            .cta-button:hover {
+                background: #FFFFFF;
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
+            }
+
+            /* iphone mockup */
+            .phone-mockup {
+                perspective: 1000px;
+            }
+
+            .iphone {
+                width: 375px;
+                height: 812px;
+                background: #1c1c1e;
+                border-radius: 49px;
+                padding: 12px;
+                box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+                position: relative;
+                margin: 0 auto;
+                transform: rotateY('-5deg');
+                transition: transform 0.6s ease;
+            }
+
+            .phone-mockup:hover .iphone {
+                transform: rotateY('0deg');
+            }
+
+            .iphone-screen {
+                width: 100%;
+                height: 100%;
+                background: #F5F5F5;
+                border-radius: 32px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            /* notch */
+            .notch {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateY(-50%);
+                width: 180px;
+                height: 30px;
+                background: #1c1c1e;
+                border-radius: 0 0 20px 20px;
+                z-index: 10;
+            }
+            /*App content made scrollable*/
+            .app-content {
+                height: 100%;
+                overflow-y: auto;
+                background: #F5F5F5;
+                padding: 40px 20px 100px;
+            }
+
+            .app-content:: ::-webkit-scrollbar {
+                width: 0;
+            }
+
+            /* header section of iphone*/
+            .app-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 24px;
+            }
+
+            .user-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 24px;
+            }
+
+            .user-info {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #A8E6A1 0%, #7BC67E 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2D5F2E;
+        }
+
+        .greeting {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .greeting-text {
+            font-size: 14px;
+            color: #8B8D91;
+        }
+
+        .username {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1C1C1E;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .icon-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            position: relative;
+        }
+
+        .streak-badge {
+            background: #FFF3E0;
+        }
+
+        .notification-badge {
+            background: #FFFFFF;
+            border: 2px solid #F0F0F0;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: #FF3B30;
+            border-radius: 50%;
+        }
+
+        /* Date Banner */
+        .date-banner {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            padding: 16px 20px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .date-banner-icon {
+            font-size: 24px;
+        }
+
+        .date-text {
+            font-size: 15px;
+            color: #2D5F2E;
+            font-weight: 600;
+        }
+
+        .date-subtext {
+            font-size: 15px;
+            color: #4A7C4E;
+            font-style: italic;
+        }
+
+        /* Progress Section */
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1C1C1E;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: #52C41A;
+            font-weight: 600;
+            float: right;
+        }
+
+        .progress-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .progress-card {
+            padding: 24px 16px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progress-card.calories {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+        }
+
+        .progress-card.distance {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .progress-card.duration {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+
+        .card-icon {
+            font-size: 32px;
+        }
+
+        .card-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1C1C1E;
+        }
+
+        .card-label {
+            font-size: 14px;
+            color: #8B8D91;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .action-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: #FFFFFF;
+            padding: 20px 12px;
+            border-radius: 16px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-4px);
+        }
+
+        .action-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .action-icon.water {
+            background: #E3F2FD;
+        }
+
+        .action-icon.meal {
+            background: #FFF3E0;
+        }
+
+        .action-icon.sleep {
+            background: #F3E5F5;
+        }
+
+        .action-icon.dashboard {
+            background: #E8F5E9;
+        }
+
+        .action-label {
+            font-size: 12px;
+            color: #1C1C1E;
+            font-weight: 600;
+        }
+
+        /* Goals Section */
+        .goals-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .view-all {
+            font-size: 14px;
+            color: #52C41A;
+            font-weight: 600;
+        }
+
+        /* Feature Sections */
+        .feature-section {
+            padding: 120px 5%;
+            background: #0A0A0A;
+        }
+
+        .feature-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-section:nth-child(even) .feature-content {
+            direction: rtl;
+        }
+
+        .feature-section:nth-child(even) .feature-text {
+            direction: ltr;
+        }
+
+        .feature-text h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .feature-text p {
+            font-size: 18px;
+            color: #8B8D91;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .feature-list li {
+            font-size: 16px;
+            color: #8B8D91;
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00E5FF;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .feature-visual {
+            background: rgba(0, 229, 255, 0.05);
+            border: 2px solid rgba(0, 229, 255, 0.2);
+            border-radius: 24px;
+            padding: 60px 40px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Bottom Nav (in phone) */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #FFFFFF;
+            padding: 12px 20px 24px;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #F0F0F0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #8B8D91;
+            font-size: 11px;
+        }
+
+        .nav-item.active {
+            color: #52C41A;
+        }
+
+        .nav-item-icon {
+            font-size: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content,
+            .feature-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .iphone {
+                width: 320px;
+                height: 693px;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+            }
+
+            .feature-text h2 {
+                font-size: 32px;
+            }
+
+            .feature-section:nth-child(even) .feature-content {
+                direction: ltr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">SEQUORR</a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/app.html">App</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="/about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <section class="app-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Your Fitness.<br><span class="gradient-text">Reimagined.</span></h1>
+                <p>Track every detail, celebrate every win, and rise with a community that pushes you forward. SEQUORR transforms how you experience fitness.</p>
+                <a href="#" class="cta-button">Download Free</a>
+            </div>
+            <div class="phone-mockup">
+                <div class="iphone">
+                    <div class="iphone-screen">
+                        <div class="notch"></div>
+                        <div class="app-content">
+                            <!-- App Header -->
+                            <div class="app-header">
+                                <div class="user-info">
+                                    <div class="avatar">S</div>
+                                    <div class="greeting">
+                                        <span class="greeting-text">Good Morning</span>
+                                        <span class="username">salugny34</span>
+                                    </div>
+                                </div>
+                                <div class="header-icons">
+                                    <div class="icon-badge streak-badge">🔥 0</div>
+                                    <div class="icon-badge notification-badge">
+                                        🔔
+                                        <div class="notification-dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Date Banner -->
+                            <div class="date-banner">
+                                <span class="date-banner-icon">📅</span>
+                                <div>
+                                    <span class="date-text">Tuesday, September 30</span>
+                                    <span class="date-subtext">Let's make today count!</span>
+                                </div>
+                            </div>
+
+                            <!-- Today's Progress -->
+                            <div>
+                                <div class="section-title">
+                                    Today's Progress
+                                    <span class="section-subtitle">0%</span>
+                                </div>
+                                <div class="progress-cards">
+                                    <div class="progress-card calories">
+                                        <span class="card-icon">🔥</span>
+                                        <span class="card-value">0</span>
+                                        <span class="card-label">Calories</span>
+                                    </div>
+                                    <div class="progress-card distance">
+                                        <span class="card-icon">📏</span>
+                                        <span class="card-value">0.0 mi</span>
+                                        <span class="card-label">Distance</span>
+                                    </div>
+                                    <div class="progress-card duration">
+                                        <span class="card-icon">⏱️</span>
+                                        <span class="card-value">0h 0m</span>
+                                        <span class="card-label">Duration</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Actions -->
+                            <div class="quick-actions">
+                                <button class="action-button">
+                                    <div class="action-icon water">💧</div>
+                                    <span class="action-label">Log Water</span>
+                                </button>
+                                <button class="action-button">
+                                    <div class="action-icon meal">🍴</div>
+                                    <span class="action-label">Log Meal</span>
+                                </button>
+                                <button class="action-button">
+                                    <div class="action-icon sleep">🛏️</div>
+                                    <span class="action-label">Log Sleep</span>
+                                </button>
+                                <button class="action-button">
+                                    <div class="action-icon dashboard">➕</div>
+                                    <span class="action-label">Dashbo</span>
+                                </button>
+                            </div>
+
+                            <!-- Today's Goals -->
+                            <div class="goals-header">
+                                <div class="section-title">Today's Goals</div>
+                                <span class="view-all">view all</span>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Navigation -->
+                        <div class="bottom-nav">
+                            <div class="nav-item active">
+                                <span class="nav-item-icon">🏠</span>
+                                <span>Home</span>
+                            </div>
+                            <div class="nav-item">
+                                <span class="nav-item-icon">🏃</span>
+                                <span>Activities</span>
+                            </div>
+                            <div class="nav-item">
+                                <span class="nav-item-icon">👥</span>
+                                <span>Social</span>
+                            </div>
+                            <div class="nav-item">
+                                <span class="nav-item-icon">🏆</span>
+                                <span>Challenges</span>
+                            </div>
+                            <div class="nav-item">
+                                <span class="nav-item-icon">👤</span>
+                                <span>Profile</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Sections -->
+    <section class="feature-section" id="features">
+        <div class="feature-content">
+            <div class="feature-text">
+                <h2>Track <span style="color: #00E5FF;">Everything</span> That Matters</h2>
+                <p>From calories burned to sleep quality, SEQUORR captures comprehensive data that gives you the full picture of your fitness journey.</p>
+                <ul class="feature-list">
+                    <li>Real-time activity tracking with precision metrics</li>
+                    <li>Nutrition logging with smart meal recognition</li>
+                    <li>Sleep analysis and recovery insights</li>
+                    <li>Hydration monitoring throughout the day</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div style="text-align: center; color: #8B8D91;">
+                    <div style="font-size: 64px; margin-bottom: 16px;">📊</div>
+                    <p style="font-size: 18px;">Comprehensive tracking<br>meets intelligent insights</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section">
+        <div class="feature-content">
+            <div class="feature-text">
+                <h2>Challenge <span style="color: #FF6B35;">Yourself</span> Daily</h2>
+                <p>Set personalized goals, join community challenges, and watch your progress unfold. Every step forward is a victory worth celebrating.</p>
+                <ul class="feature-list">
+                    <li>Weekly challenges to keep you motivated</li>
+                    <li>Custom goal setting for any fitness level</li>
+                    <li>Achievement badges and streak tracking</li>
+                    <li>Community leaderboards and social motivation</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div style="text-align: center; color: #8B8D91;">
+                    <div style="font-size: 64px; margin-bottom: 16px;">🏆</div>
+                    <p style="font-size: 18px;">Turn goals into habits,<br>habits into transformation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section">
+        <div class="feature-content">
+            <div class="feature-text">
+                <h2>Rise <span style="color: #00E5FF;">Together</span></h2>
+                <p>Connect with athletes who share your drive. Share achievements, compete in challenges, and discover what you're truly capable of.</p>
+                <ul class="feature-list">
+                    <li>Social feed to share your wins and progress</li>
+                    <li>Connect with friends and fitness communities</li>
+                    <li>Group challenges and team competitions</li>
+                    <li>Personalized health tips and motivation</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div style="text-align: center; color: #8B8D91;">
+                    <div style="font-size: 64px; margin-bottom: 16px;">👥</div>
+                    <p style="font-size: 18px;">Your community,<br>your support system</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="app-hero" style="min-height: 70vh;">
+        <div style="text-align: center; max-width: 800px;">
+            <h1 style="font-size: 56px; margin-bottom: 24px;">
+                Ready to <span class="gradient-text">Transform?</span>
+            </h1>
+            <p style="font-size: 20px; color: #8B8D91; margin-bottom: 40px;">
+                Join thousands of athletes who are reimagining their fitness journey with SEQUORR.
+            </p>
+            <a href="#" class="cta-button" style="margin-right: 16px;">Download Free</a>
+            <a href="/" class="cta-button" style="background: transparent; color: #00E5FF; border: 2px solid #00E5FF;">Back Home</a>
+        </div>
+    </section>
+</body>
+</html>
