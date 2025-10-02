@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEQUORR - Roadmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #0A0A0A;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #00E5FF;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00E5FF;
+        }
+
+        .roadmap-container {
+            min-height: 100vh;
+            padding: 140px 5% 80px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #00E5FF 0%, #FF6B35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #8B8D91;
+            line-height: 1.6;
+            margin-bottom: 64px;
+        }
+
+        .feedback-sections {
+            display: grid;
+            gap: 32px;
+        }
+
+        .feedback-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(139, 141, 145, 0.2);
+            border-radius: 20px;
+            padding: 48px;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-card:hover {
+            border-color: rgba(0, 229, 255, 0.3);
+        }
+
+        .card-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .card-description {
+            font-size: 16px;
+            color: #8B8D91;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-button {
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(139, 141, 145, 0.3);
+            border-radius: 12px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-button:hover {
+            border-color: #00E5FF;
+            background: rgba(0, 229, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .social-button.reddit:hover {
+            border-color: #FF4500;
+            background: rgba(255, 69, 0, 0.1);
+        }
+
+        .social-button.instagram:hover {
+            border-color: #E4405F;
+            background: rgba(228, 64, 95, 0.1);
+        }
+
+        .social-button.youtube:hover {
+            border-color: #FF0000;
+            background: rgba(255, 0, 0, 0.1);
+        }
+
+        .social-button.discord {
+            background: rgba(88, 101, 242, 0.1);
+            border-color: rgba(88, 101, 242, 0.3);
+            color: #7289DA;
+            cursor: not-allowed;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(139, 141, 145, 0.3);
+            border-radius: 12px;
+            font-size: 15px;
+            color: #FFFFFF;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #00E5FF;
+            background: rgba(0, 229, 255, 0.05);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #8B8D91;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: #00E5FF;
+            color: #0A0A0A;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            display: none;
+            padding: 16px;
+            background: rgba(82, 196, 26, 0.1);
+            border: 2px solid rgba(82, 196, 26, 0.3);
+            border-radius: 12px;
+            color: #52C41A;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 48px;
+            }
+            .card-title {
+                font-size: 24px;
+            }
+            .feedback-card {
+                padding: 32px 24px;
+            }
+            .social-links {
+                flex-direction: column;
+            }
+            .social-button {
+                width: 100%;
+                justify-content: center;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">SEQUORR</a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/app.html">App</a></li>
+            <li><a href="/demo.html">Demo</a></li>
+            <li><a href="/waitlist.html">Join Waitlist</a></li>
+        </ul>
+    </nav>
+
+    <div class="roadmap-container">
+        <div class="hero-section">
+            <h1>Shape the <span class="gradient-text">Future</span></h1>
+            <p class="subtitle">Your feedback directly influences what we build next</p>
+        </div>
+
+        <div class="feedback-sections">
+            <!-- Join the Discussion -->
+            <div class="feedback-card">
+                <h2 class="card-title">Join the Discussion</h2>
+                <p class="card-description">Connect with the community, share ideas, and stay updated on SEQUORR's development</p>
+                
+                <div class="social-links">
+                    <a href="https://reddit.com/r/SEQUORR" target="_blank" class="social-button reddit">
+                        <span>🔴</span> Reddit
+                    </a>
+                    <a href="https://www.instagram.com/mapp_sequorr/" target="_blank" class="social-button instagram">
+                        <span>📸</span> Instagram
+                    </a>
+                    <a href="#" target="_blank" class="social-button youtube">
+                        <span>▶️</span> YouTube
+                    </a>
+                    <span class="social-button discord">
+                        <span>💬</span> Discord (Coming Soon)
+                    </span>
+                </div>
+            </div>
+
+            <!-- Submit Your Ideas -->
+            <div class="feedback-card">
+                <h2 class="card-title">Submit Your Ideas</h2>
+                <p class="card-description">Have a feature request or suggestion? We'd love to hear from you</p>
+
+                <form id="feedbackForm" action="YOUR_FORM_ENDPOINT_HERE" method="POST">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-input" placeholder="Your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select name="category" class="form-select" required>
+                            <option value="">Select a category</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="improvement">Improvement</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Your Feedback</label>
+                        <textarea name="feedback" class="form-textarea" placeholder="Tell us what you'd like to see..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Submit Feedback</button>
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    ✓ Thank you! Your feedback has been received.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('feedbackForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            setTimeout(() => {
+                successMessage.classList.add('show');
+                form.reset();
+                setTimeout(() => successMessage.classList.remove('show'), 5000);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
