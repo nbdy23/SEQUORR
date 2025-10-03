@@ -18,7 +18,6 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -59,9 +58,8 @@
             color: #00E5FF;
         }
 
-        /* Hero Section */
         .app-hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -120,7 +118,6 @@
             box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
         }
 
-        /* iPhone Mockup */
         .phone-mockup {
             perspective: 1000px;
         }
@@ -131,8 +128,7 @@
             background: #1C1C1E;
             border-radius: 40px;
             padding: 12px;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5),
-                        0 0 0 1px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
             position: relative;
             margin: 0 auto;
             transform: rotateY(-5deg);
@@ -434,21 +430,93 @@
             font-size: 24px;
         }
 
+        .feature-section {
+            padding: 120px 5%;
+            background: #0A0A0A;
+        }
+
+        .feature-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-section:nth-child(even) .feature-content {
+            direction: rtl;
+        }
+
+        .feature-section:nth-child(even) .feature-text {
+            direction: ltr;
+        }
+
+        .feature-text h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .feature-text p {
+            font-size: 18px;
+            color: #8B8D91;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .feature-list li {
+            font-size: 16px;
+            color: #8B8D91;
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00E5FF;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .feature-visual {
+            background: rgba(0, 229, 255, 0.05);
+            border: 2px solid rgba(0, 229, 255, 0.2);
+            border-radius: 24px;
+            padding: 60px 40px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         @media (max-width: 768px) {
-            .hero-content {
+            .hero-content, .feature-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-
             .iphone {
                 width: 320px;
                 height: 693px;
             }
-
             .hero-text h1 {
                 font-size: 40px;
             }
-
+            .feature-text h2 {
+                font-size: 32px;
+            }
+            .feature-section:nth-child(even) .feature-content {
+                direction: ltr;
+            }
             .nav-links {
                 display: none;
             }
@@ -493,7 +561,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="date-banner">
                                 <span class="date-banner-icon">📅</span>
                                 <div>
@@ -501,7 +568,6 @@
                                     <span class="date-subtext">Let's make today count!</span>
                                 </div>
                             </div>
-
                             <div>
                                 <div class="section-title">
                                     Today's Progress
@@ -525,7 +591,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="quick-actions">
                                 <button class="action-button">
                                     <div class="action-icon water">💧</div>
@@ -541,16 +606,14 @@
                                 </button>
                                 <button class="action-button">
                                     <div class="action-icon dashboard">➕</div>
-                                    <span class="action-label">Dashbo</span>
+                                    <span class="action-label">Dashboard</span>
                                 </button>
                             </div>
-
                             <div class="goals-header">
                                 <div class="section-title">Today's Goals</div>
                                 <span class="view-all">view all</span>
                             </div>
                         </div>
-
                         <div class="bottom-nav">
                             <div class="nav-item active">
                                 <span class="nav-item-icon">🏠</span>
@@ -576,6 +639,82 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="feature-section">
+        <div class="feature-content">
+            <div class="feature-text">
+                <h2>Track <span style="color: #00E5FF;">Everything</span> That Matters</h2>
+                <p>From calories burned to sleep quality, SEQUORR captures comprehensive data that gives you the full picture of your fitness journey.</p>
+                <ul class="feature-list">
+                    <li>Real-time activity tracking with precision metrics</li>
+                    <li>Nutrition logging with smart meal recognition</li>
+                    <li>Sleep analysis and recovery insights</li>
+                    <li>Hydration monitoring throughout the day</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div style="text-align: center; color: #8B8D91;">
+                    <div style="font-size: 64px; margin-bottom: 16px;">📊</div>
+                    <p style="font-size: 18px;">Comprehensive tracking<br>meets intelligent insights</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section">
+        <div class="feature-content">
+            <div class="feature-text">
+                <h2>Challenge <span style="color: #FF6B35;">Yourself</span> Daily</h2>
+                <p>Set personalized goals, join community challenges, and watch your progress unfold. Every step forward is a victory worth celebrating.</p>
+                <ul class="feature-list">
+                    <li>Weekly challenges to keep you motivated</li>
+                    <li>Custom goal setting for any fitness level</li>
+                    <li>Achievement badges and streak tracking</li>
+                    <li>Community leaderboards and social motivation</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div style="text-align: center; color: #8B8D91;">
+                    <div style="font-size: 64px; margin-bottom: 16px;">🏆</div>
+                    <p style="font-size: 18px;">Turn goals into habits,<br>habits into transformation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section">
+        <div class="feature-content">
+            <div class="feature-text">
+                <h2>Rise <span style="color: #00E5FF;">Together</span></h2>
+                <p>Connect with athletes who share your drive. Share achievements, compete in challenges, and discover what you're truly capable of.</p>
+                <ul class="feature-list">
+                    <li>Social feed to share your wins and progress</li>
+                    <li>Connect with friends and fitness communities</li>
+                    <li>Group challenges and team competitions</li>
+                    <li>Personalized health tips and motivation</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <div style="text-align: center; color: #8B8D91;">
+                    <div style="font-size: 64px; margin-bottom: 16px;">👥</div>
+                    <p style="font-size: 18px;">Your community,<br>your support system</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-hero" style="min-height: 70vh;">
+        <div style="text-align: center; max-width: 800px;">
+            <h1 style="font-size: 56px; margin-bottom: 24px;">
+                Ready to <span class="gradient-text">Transform?</span>
+            </h1>
+            <p style="font-size: 20px; color: #8B8D91; margin-bottom: 40px;">
+                Join thousands of athletes who are reimagining their fitness journey with SEQUORR.
+            </p>
+            <a href="waitlist.html" class="cta-button" style="margin-right: 16px;">Download Free</a>
+            <a href="index.html" class="cta-button" style="background: transparent; color: #00E5FF; border: 2px solid #00E5FF;">Back Home</a>
         </div>
     </section>
 </body>
