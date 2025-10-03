@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> SEQUORR - The App</title>
+    <title>SEQUORR - The App</title>
     <style>
-        * { 
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             background: #0A0A0A;
             color: #FFFFFF;
             overflow-x: hidden;
         }
 
-        /* Nav. */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px, 5%;
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -31,171 +31,167 @@
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 229, 255, 0.1);
-            }
-            .logo {
-                font-size: 24px;
-                font-weight: 700;
-                letter-spacing: 2px;
-                color: #00E5FF;
-                text-decoration: none;
-            }
+        }
 
-            .nav-links {
-                display: flex;
-                gap: 40px;
-                list-style: none;
-            }
-            
-            .nav-links a {
-                color: #FFFFFF;
-                text-decoration: none;
-                font-size: 14px;
-                font-weight: 500;
-                transition: color 0.3s ease;
-            }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #00E5FF;
+            text-decoration: none;
+        }
 
-            .nav-links a:hover {
-                color: #00E5FF;
-            }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
 
-            /* Hero SECTION */
-            .app-hero {
-                min-height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 120px 5% 80px;
-                background: radial-gradient(ellipse at center top, rgba(0, 229, 255, 0.1) 0%, transparent 50%);
-            }
+        .nav-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
 
-            .hero-caption {
-                display: grid;
-                grid-template-columns: 1fr, 1fr;
-                gap: 80px;
-                align-items: center;
-                max-width: 1400px;
-                width: 100%;
-            }
+        .nav-links a:hover {
+            color: #00E5FF;
+        }
 
-            .hero-text h1 {
-                font-size: 64px;
-                font-weight: 700;
-                margin-bottom: 24px;
-                letter-spacing: -2px;
-                line-height: 1.1;
-            }
+        /* Hero Section */
+        .app-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 5% 80px;
+            background: radial-gradient(ellipse at center top, rgba(0, 229, 255, 0.1) 0%, transparent 50%);
+        }
 
-            .gradient-text {
-                background: linear-gradient(135deg, #00E5FF 0%, #FF6B35 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-            }
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1400px;
+            width: 100%;
+        }
 
-            .hero-text p {
-                font-size: 20px;
-                color: #8B8D91;
-                line-height: 1.6;
-                margin-bottom: 32px;
-            }
+        .hero-text h1 {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
 
-            .cta-button {
-                padding: 18px 48px;
-                background: #00E5FF;
-                color: #0A0A0A;
-                border: none;
-                border-radius: 50px;
-                font-size: 16px;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                text-decoration: none;
-                display: inline-block;
-            }
+        .gradient-text {
+            background: linear-gradient(135deg, #00E5FF 0%, #FF6B35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-            .cta-button:hover {
-                background: #FFFFFF;
-                transform: translateY(-2px);
-                box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
-            }
+        .hero-text p {
+            font-size: 20px;
+            color: #8B8D91;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
 
-            /* iphone mockup */
-            .phone-mockup {
-                perspective: 1000px;
-            }
+        .cta-button {
+            padding: 18px 48px;
+            background: #00E5FF;
+            color: #0A0A0A;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-            .iphone {
-                width: 375px;
-                height: 812px;
-                background: #1c1c1e;
-                border-radius: 49px;
-                padding: 12px;
-                box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
-                position: relative;
-                margin: 0 auto;
-                transform: rotateY('-5deg');
-                transition: transform 0.6s ease;
-            }
+        .cta-button:hover {
+            background: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
+        }
 
-            .phone-mockup:hover .iphone {
-                transform: rotateY('0deg');
-            }
+        /* iPhone Mockup */
+        .phone-mockup {
+            perspective: 1000px;
+        }
 
-            .iphone-screen {
-                width: 100%;
-                height: 100%;
-                background: #F5F5F5;
-                border-radius: 32px;
-                overflow: hidden;
-                position: relative;
-            }
+        .iphone {
+            width: 375px;
+            height: 812px;
+            background: #1C1C1E;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5),
+                        0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+            margin: 0 auto;
+            transform: rotateY(-5deg);
+            transition: transform 0.6s ease;
+        }
 
-            /* notch */
-            .notch {
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translateY(-50%);
-                width: 180px;
-                height: 30px;
-                background: #1c1c1e;
-                border-radius: 0 0 20px 20px;
-                z-index: 10;
-            }
-            /*App content made scrollable*/
-            .app-content {
-                height: 100%;
-                overflow-y: auto;
-                background: #F5F5F5;
-                padding: 40px 20px 100px;
-            }
+        .phone-mockup:hover .iphone {
+            transform: rotateY(0deg);
+        }
 
-            .app-content::-webkit-scrollbar {
-                width: 0;
-            }
+        .iphone-screen {
+            width: 100%;
+            height: 100%;
+            background: #F5F5F5;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
 
-            /* header section of iphone*/
-            .app-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 24px;
-            }
+        /* Notch */
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 30px;
+            background: #1C1C1E;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
 
-            .user-info {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 24px;
-            }
+        /* App Content Scrollable */
+        .app-content {
+            height: 100%;
+            overflow-y: auto;
+            background: #F5F5F5;
+            padding: 40px 20px 100px;
+        }
 
-            .user-info {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            }
-            
-            .avatar {
+        .app-content::-webkit-scrollbar {
+            width: 0;
+        }
+
+        /* Header Section */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -547,12 +543,12 @@
     </style>
 </head>
 <body>
-    <nav id="navbar">
-        <div href="/" class="logo">SEQUORR</div>
+    <nav>
+        <a href="/" class="logo">SEQUORR</a>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/app.html">App</a></li>
-            <li><a href="/features">Features</a></li>
+            <li><a href="#features">Features</a></li>
             <li><a href="/about.html">About</a></li>
         </ul>
     </nav>
@@ -572,10 +568,10 @@
                             <!-- App Header -->
                             <div class="app-header">
                                 <div class="user-info">
-                                    <div class="avatar">E</div>
+                                    <div class="avatar">S</div>
                                     <div class="greeting">
                                         <span class="greeting-text">Good Morning</span>
-                                        <span class="username">Elon Bro What's Up</span>
+                                        <span class="username">salugny34</span>
                                     </div>
                                 </div>
                                 <div class="header-icons">
@@ -714,7 +710,7 @@
             <div class="feature-visual">
                 <div style="text-align: center; color: #8B8D91;">
                     <div style="font-size: 64px; margin-bottom: 16px;">🏆</div>
-                    <p style="font-size: 18px;">,Turn goals into habits<br>habits into transformation</p>
+                    <p style="font-size: 18px;">Turn goals into habits,<br>habits into transformation</p>
                 </div>
             </div>
         </div>
