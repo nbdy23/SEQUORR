@@ -157,16 +157,16 @@
             background: rgba(228, 64, 95, 0.1);
         }
 
-        .social-button.youtube:hover {
-            border-color: #FF0000;
+        .social-button.youtube {
             background: rgba(255, 0, 0, 0.1);
+            border-color: rgba(255, 0, 0, 0.3);
+            color: #FF0000;
+            cursor: not-allowed;
         }
 
-        .social-button.discord {
+        .social-button.discord:hover {
+            border-color: #5865F2;
             background: rgba(88, 101, 242, 0.1);
-            border-color: rgba(88, 101, 242, 0.3);
-            color: #7289DA;
-            cursor: not-allowed;
         }
 
         .form-group {
@@ -297,11 +297,11 @@
                     <a href="https://www.instagram.com/mapp_sequorr/" target="_blank" class="social-button instagram">
                         <span>📸</span> Instagram
                     </a>
-                    <span href="#" target="_blank" class="social-button youtube">
-                        <span>▶️</span> YouTube (Coming Soon)
-                    </a>
                     <a href="https://discord.gg/eAVNqFcb" target="_blank" class="social-button discord">
-                        <a>💬</a> Discord
+                        <span>💬</span> Discord
+                    </a>
+                    <span class="social-button youtube">
+                        <span>▶️</span> YouTube (Coming Soon)
                     </span>
                 </div>
             </div>
