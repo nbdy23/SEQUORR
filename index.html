@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEQUORR - Imagination Beyond Limits</title>
+    <title>Sequorr - Imagination Beyond Limits</title>
     <style>
         * {
             margin: 0;
@@ -38,11 +38,19 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #2aff00;
+            display: flex;
+            align-items: center;
             text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -361,7 +369,9 @@
 </head>
 <body>
     <nav id="navbar">
-        <a href="index.html" class="logo">SEQUORR</a>
+        <a href="index.html" class="logo">
+            <img src="sequorr-logo_03.svg" alt="Sequorr" class="logo-img">
+        </a>
         <ul class="nav-links">
             <li><a href="app.html">App</a></li>
             <li><a href="community.html">Community</a></li>
@@ -380,7 +390,7 @@
         <div class="module-content">
             <div class="module-text">
                 <h2>Track Every <span style="color: #2aff00;">Detail</span></h2>
-                <p>Precision metrics that matter. From heart rate variability to recovery scores, SEQUORR captures the data that drives real progress.</p>
+                <p>Precision metrics that matter. From heart rate variability to recovery scores, Sequorr captures the data that drives real progress.</p>
                 <a href="app.html" class="cta-secondary">Explore Metrics</a>
             </div>
             <div class="module-visual visual-metrics">
