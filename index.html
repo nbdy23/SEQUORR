@@ -387,18 +387,17 @@
     </section>
 
     <section class="module" id="features">
-        <div class="module-content">
-            <div class="module-text">
-                <h2>Track Every <span style="color: #2aff00;">Detail</span></h2>
-                <p>Precision metrics that matter. From heart rate variability to recovery scores, Sequorr captures the data that drives real progress.</p>
-                <a href="app.html" class="cta-secondary">Explore Metrics</a>
-            </div>
-            <div class="module-visual visual-metrics">
-                <div class="metric-card">
-                    <div class="metric-number">98<span style="font-size: 40px; color: #1a9b00;">%</span></div>
-                    <div class="metric-label">Recovery Score</div>
+    <div class="module-content">
+        <div class="module-text">
+            <h2>Track Every <span style="color: #2aff00;">Detail</span></h2>
+            <p>Precision metrics that matter. From heart rate variability to recovery scores, Sequorr captures the data that drives real progress.</p>
+            <a href="app.html" class="cta-secondary">Explore Metrics</a>
+        </div>
+        <div class="module-visual visual-metrics">
+            <!-- Globe replaces the 98% -->
+                <div class="globe-section">
+                    <canvas id="cobe" width="800" height="800" style="width: 400px; height: 400px;"></canvas>
                 </div>
-            </div>
         </div>
     </section>
 
@@ -518,6 +517,38 @@
                 }
             });
         });
+    </script>
+    <script type="module">
+        import createGlobe from 'https://cdn.skypack.dev/cobe'
+        
+        let phi = 0
+        let canvas = document.getElementById("cobe")
+        
+        const globe = createGlobe(canvas, {
+            devicePixelRatio: 2,
+            width: 800,
+            height: 800,
+            phi: 0,
+            theta: 0.3,
+            dark: 1,
+            diffuse: 1.2,
+            mapSamples: 16000,
+            mapBrightness: 6,
+            baseColor: [0.3, 0.3, 0.3],
+            markerColor: [0.1, 0.8, 1],
+            glowColor: [0.16, 1, 0.5],
+            markers: [
+                { location: [37.7749, -122.4194], size: 0.05 }, // San Francisco
+                { location: [34.0522, -118.2437], size: 0.05 }, // Los Angeles
+                { location: [40.7128, -74.0060], size: 0.05 }, // New York
+                { location: [51.5074, -0.1278], size: 0.05 }, // London
+                { location: [35.6895, 139.6917], size: 0.05 } // Tokyo
+            ],
+            onRender: (state) => {
+                phi += 0.002
+                state.phi = phi
+            }
+        })
     </script>
 </body>
 </html>
