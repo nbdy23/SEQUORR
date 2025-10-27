@@ -277,62 +277,82 @@
             border: 3px solid #0A0A0A;
         }
 
-        /* Retro Grid Styles */
-        .retro-grid-container {
-            pointer-events: none;
-            position: absolute;
-            height: 100%;
+        /* ===== ANIMATED BEAM ===== */
+        .beam-container {
+            position: relative;
+            display: flex;
             width: 100%;
+            max-width: 500px;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            opacity: 0.5;
-            perspective: 200px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #0A0A0A;
+            padding: 40px;
+            box-shadow: 0 0 40px rgba(42, 255, 0, 0.1);
+        }
+
+        .beam-gradient-line {
+            position: absolute;
+            right: 20px;
+            top: 0;
+            height: 1px;
+            width: 50%;
+            background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.3) 10%, transparent);
+        }
+
+        .beam-content {
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .beam-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .beam-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(42, 255, 0, 0.1);
+            border: 2px solid rgba(42, 255, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .beam-circle:hover {
+            background: rgba(42, 255, 0, 0.2);
+            border-color: rgba(42, 255, 0, 0.6);
+            box-shadow: 0 0 20px rgba(42, 255, 0, 0.4);
+        }
+
+        .beam-circle svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Canvas for animated beams */
+        .beam-canvas {
+            position: absolute;
             top: 0;
             left: 0;
-        }
-
-        .retro-grid-perspective {
-            position: absolute;
-            height: 100%;
             width: 100%;
-            overflow: hidden;
-            top: 0%;
-            left: 0%;
-            inset: 0;
-            transform: rotateX(55deg);
-            transform-style: preserve-3d;
-        }
-
-        .retro-grid-animated {
-            animation: grid-slide 11s linear infinite;
-            background-repeat: repeat;
-            background-size: 50px 50px;
-            height: 800vh;
-            position: absolute;
-            top: -400vh;
-            left: -50%;
-            inset: 0% 0px;
-            margin-left: 50%;
-            transform-origin: 100% 0 0;
-            width: 600vw;
-       /* Grid lines - change color here */
-        background-image: 
-            linear-gradient(to right, rgba(42, 255, 0, 0.3) 1px, transparent 0),
-            linear-gradient(to bottom, rgba(42, 255, 0, 0.3) 1px, transparent 0);
-        }
-
-        @keyframes grid-slide {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(60px);
-            }
-        }
-
-        .retro-grid-gradient {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, #0A0A0A 0%, transparent 90%);
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
         /* Ripple Animation */
@@ -551,30 +571,77 @@
         </div>
     </div>
     </section>
-
-    <section class="module" id="community-features">
+    <!-- Animated Beam Section -->
+    <section class="module">
         <div class="module-content">
             <div class="module-text">
-                <h2>Rise <span style="color: #2aff00;">Together</span></h2>
+            <h2>Rise <span style="color: #2aff00;">Together</span></h2>
                 <p>Join athletes who push boundaries. Share achievements, challenge friends, and discover what you're truly capable of.</p>
                 <a href="community.html" class="cta-secondary">Join Community</a>
+
             </div>
-            <div class="module-visual visual-progress" style="position: relative;">
-            <div class="module-visual">
-                <div class="community-grid">
-                    <div class="avatar" style="background: linear-gradient(225deg, #1a9b00 0%, #2aff00 100%);"></div>
-                    <div class="avatar" style="background: linear-gradient(135deg, #38618c 0%, #e5e5b1 100%);"></div>
-                    <div class="avatar" style="background: linear-gradient(225deg, #1a9b00 0%, #2aff00 100%);"></div>
-                    <div class="avatar" style="background: linear-gradient(225deg, #38618c 0%, #e5e5b1 100%);"></div>
-                    <div class="avatar" style="background: linear-gradient(225deg, #1a9b00 0%, #2aff00 100%);"></div>
-                    <div class="avatar" style="background: linear-gradient(135deg, #e5e5b1 0%, #38618c 100%);"></div>
-                    <div class="avatar" style="background: linear-gradient(225deg, #1a9b00 0%, #2aff00 100%);"></div>
-                    <div class="avatar" style="background: linear-gradient(225deg, #e5e5b1 0%, #38618c 100%);"></div>
-                    <div class="avatar" style="background: linear-gradient(225deg, #1a9b00 0%, #2aff00 100%);"></div>
+            <div class="module-visual" style="display: flex; justify-content: center; align-items: center;">
+                <div class="beam-container" id="beamContainer">
+                    <div class="beam-gradient-line"></div>
+                    <canvas class="beam-canvas" id="beamCanvas"></canvas>
+                    
+                    <div class="beam-content">
+                        <div class="beam-column" id="leftColumn">
+                            <div class="beam-circle" data-beam="source">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5"/>
+                                    <path d="M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <div class="beam-circle" data-beam="source">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 16v-4M12 8h.01"/>
+                                </svg>
+                            </div>
+                            <div class="beam-circle" data-beam="source">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    <path d="M9 3v18"/>
+                                </svg>
+                            </div>
+                            <div class="beam-circle" data-beam="source">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                </svg>
+                            </div>
+                            <div class="beam-circle" data-beam="source">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 7h16M4 12h16M4 17h16"/>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="beam-column">
+                            <div class="beam-circle" data-beam="center" style="width: 80px; height: 80px; background: rgba(42, 255, 0, 0.2); border-color: rgba(42, 255, 0, 0.5);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 40px; height: 40px;">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5"/>
+                                    <path d="M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="beam-column">
+                            <div class="beam-circle" data-beam="target">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+        </section>
+
 
     <section class="stats" id="about">
         <div class="stats-grid">
@@ -668,7 +735,7 @@
             glowColor: [0.16, 1, 0.5],
             markers: [
                 { location: [37.7749, -122.4194], size: 0.05 }, // San Francisco
-                { location: [34.0522, -118.2437], size: 0.05 }, // Los Angeles
+                { location: [28.62696, 77.21540], size: 0.05 }, // New Delhi, India
                 { location: [40.7128, -74.0060], size: 0.05 }, // New York
                 { location: [51.5074, -0.1278], size: 0.05 }, // London
                 { location: [35.6895, 139.6917], size: 0.05 } // Tokyo
@@ -678,6 +745,129 @@
                 state.phi = phi
             }
         })
+    </script>
+    <script>
+    // Animated Beam Effect
+    (function() {
+        const beamCanvas = document.getElementById('beamCanvas');
+        const beamContainer = document.getElementById('beamContainer');
+
+        if (!beamCanvas || !beamContainer) {
+            console.log('Beam elements not found');
+            return;
+        }
+
+        const ctx = beamCanvas.getContext('2d');
+        
+        function resizeCanvas() {
+            beamCanvas.width = beamContainer.offsetWidth;
+            beamCanvas.height = beamContainer.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        function getCirclePositions() {
+            const sources = document.querySelectorAll('[data-beam="source"]');
+            const center = document.querySelector('[data-beam="center"]');
+            const target = document.querySelector('[data-beam="target"]');
+            
+            const containerRect = beamContainer.getBoundingClientRect();
+            const positions = { sources: [], center: null, target: null };
+            
+            sources.forEach(source => {
+                const rect = source.getBoundingClientRect();
+                positions.sources.push({
+                    x: rect.left + rect.width / 2 - containerRect.left,
+                    y: rect.top + rect.height / 2 - containerRect.top
+                });
+            });
+            
+            if (center) {
+                const rect = center.getBoundingClientRect();
+                positions.center = {
+                    x: rect.left + rect.width / 2 - containerRect.left,
+                    y: rect.top + rect.height / 2 - containerRect.top
+                };
+            }
+            
+            if (target) {
+                const rect = target.getBoundingClientRect();
+                positions.target = {
+                    x: rect.left + rect.width / 2 - containerRect.left,
+                    y: rect.top + rect.height / 2 - containerRect.top
+                };
+            }
+            
+            return positions;
+        }
+        
+        let beams = [];
+        const positions = getCirclePositions();
+        
+        positions.sources.forEach((source, i) => {
+            beams.push({
+                from: source,
+                to: positions.center,
+                progress: i * 0.2,
+                speed: 0.008,
+                delay: i * 0.2
+            });
+        });
+        
+        beams.push({
+            from: positions.center,
+            to: positions.target,
+            progress: 0,
+            speed: 0.008,
+            delay: 1
+        });
+        
+        function drawBeam(from, to, progress) {
+            const x = from.x + (to.x - from.x) * progress;
+            const y = from.y + (to.y - from.y) * progress;
+            
+            const gradient = ctx.createLinearGradient(from.x, from.y, x, y);
+            gradient.addColorStop(0, 'rgba(42, 255, 0, 0)');
+            gradient.addColorStop(0.5, 'rgba(42, 255, 0, 0.6)');
+            gradient.addColorStop(1, 'rgba(42, 255, 0, 0)');
+            
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(from.x, from.y);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            
+            const glowGradient = ctx.createRadialGradient(x, y, 0, x, y, 10);
+            glowGradient.addColorStop(0, 'rgba(42, 255, 0, 0.8)');
+            glowGradient.addColorStop(1, 'rgba(42, 255, 0, 0)');
+            
+            ctx.fillStyle = glowGradient;
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, beamCanvas.width, beamCanvas.height);
+            
+            beams.forEach(beam => {
+                if (beam.progress >= beam.delay) {
+                    const adjustedProgress = Math.min((beam.progress - beam.delay) / (1 - beam.delay), 1);
+                    drawBeam(beam.from, beam.to, adjustedProgress);
+                }
+                
+                beam.progress += beam.speed;
+                if (beam.progress > 1 + beam.delay) {
+                    beam.progress = 0;
+                }
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    })();
     </script>
 </body>
 </html>
