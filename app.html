@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEQUORR - The App</title>
+    <!-- Tailwind CSS CDN --> 
+    <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
+                        },
+                        keyframes: {
+                            'border-beam': {
+                                '100%': {
+                                    'offset-distance': '100%',
+                                    },
+                                },
+                            },
+                        }
+                    }
+                }
+        </script>
+
     <style>
         * {
             margin: 0;
@@ -124,6 +145,91 @@
             background: #FFFFFF;
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(1, 111, 50, 0.0);
+        }
+        /* Interactive CTA Button with Arrow */
+        .cta-button-interactive {
+            position: relative;
+            width: auto;
+            min-width: 180px;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 50px;
+            border: 2px solid #ffffff #0A0A0A;
+            background: #ffffff;
+            padding: 16px 34px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0A0A0A;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-interactive .button-text {
+            display: inline-block;
+            transform: translateX(4px);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-interactive:hover .button-text {
+            transform: translateX(48px);
+            opacity: 0;
+        }
+
+        .cta-button-interactive .button-hover-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 100%;
+            width: 100%;
+            color: #0A0A0A;
+            transform: translateX(48px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-interactive:hover .button-hover-content {
+            transform: translateX(-4px);
+            opacity: 1;
+        }
+
+        .cta-button-interactive .button-bg-expand {
+            position: absolute;
+            left: 20%;
+            top: 40%;
+            height: 8px;
+            width: 8px;
+            border-radius: 8px;
+            background: #2aff00;
+            transition: all 0.3s ease;
+            transform: scale(1);
+            opacity: 0;
+            z-index: 0;
+        }
+        
+        .cta-button-interactive:hover .button-bg-expand {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            transform: scale(1.8);
+            background: #2aff00;
+            opacity: 1;
+        }
+
+        /* Arrow icon */
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
         }
 
         .phone-mockup {
@@ -439,49 +545,48 @@
         }
 
         .feature-section {
-            padding: 120px 5%;
+            padding: 120px 0;
             background: #0A0A0A;
         }
 
-        .feature-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1400px;
+        .feature-container {
+            max-width: 100%;
+            padding: 0 10%; /* 10% padding on each side = 20% total, or adjust to 20% for 40% total */
             margin: 0 auto;
         }
 
-        .feature-section:nth-child(even) .feature-content {
-            direction: rtl;
+        .feature-box-centered {
+            background: rgba(1, 111, 50, 0.05);
+            border: 2px solid rgba(1, 111, 50, 0.3);
+            border-radius: 30px;
+            padding: 60px 80px;
+            text-align: left;
         }
 
-        .feature-section:nth-child(even) .feature-text {
-            direction: ltr;
-        }
-
-        .feature-text h2 {
+        .feature-box-centered h2 {
             font-size: 48px;
             font-weight: 700;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             letter-spacing: -1px;
+            text-align: left;
         }
 
-        .feature-text p {
+        .feature-box-centered p {
             font-size: 18px;
-            color: #8B8D91;
+            color: #8d958e;
             line-height: 1.6;
-            margin-bottom: 24px;
+            margin-bottom: 40px;
         }
 
         .feature-list {
             list-style: none;
-            margin-top: 24px;
+            margin: 0;
+            padding: 0;
         }
 
         .feature-list li {
             font-size: 16px;
-            color: #8B8D91;
+            color: #8d958e;
             padding: 12px 0;
             padding-left: 32px;
             position: relative;
@@ -491,20 +596,73 @@
             content: "✓";
             position: absolute;
             left: 0;
-            color: #1a9b00;
+            color: #2aff00;
             font-weight: 700;
             font-size: 20px;
         }
 
-        .feature-visual {
-            background: rgba(1, 111, 50, 0.0);
-            border: 2px solid rgba(1, 111, 50, 0.2);
-            border-radius: 24px;
-            padding: 60px 40px;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .feature-container {
+                padding: 0 5%;
+            }
+            
+            .feature-box-centered {
+                padding: 40px 30px;
+            }
+            
+            .feature-box-centered h2 {
+                font-size: 32px;
+            }
+        }
+
+      /* Border Beam Effect */
+        .border-beam-wrapper {
+            position: relative;
+        }
+
+        .border-beam-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent,
+                transparent,
+                transparent,
+                transparent,
+                transparent,
+                transparent,
+                transparent,
+                #2aff00,
+                transparent
+            );
+            animation: rotate-border 4s linear infinite;
+        }
+
+        .border-beam-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: rgba(10, 10, 10, 0.95);
+            border-radius: 28px;
+            z-index: 1;
+        }
+
+        .border-beam-wrapper > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes rotate-border {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Footer CTA */
@@ -576,26 +734,18 @@
             .nav-links {
                 display: none;
             }
-            .footer-cta h2 { font-size: 40px;
+            .feature-cards-section {
+                padding: 60px 5% !important;
             }
-            .footer-cta p { 
-                font-size: 18px;
+            .feature-cards-container {
+                gap: 40px !important;
             }
-            /* Adjust logo size on mobile */
-            .footer-cta .cta-button, .footer-cta .cta-secondary {
-                display: block;
-                width: 100%;
-                max-width: 300px;
-                margin: 12px auto;
-                text-align: center;
-            }
-            .footer-cta .cta-secondary {
-                margin-left: auto;
-            }
+            .feature-cards-container article {
+                padding: 40px !important;
+                margin-left: 0 !important;
+                transform: none !important;
+            }            
         }
-
-
-
     </style>
 </head>
 <body>
@@ -615,8 +765,20 @@
             <div class="hero-text">
                 <h1>Your Fitness.<br><span class="gradient-text">Reimagined.</span></h1>
                 <p>Track every detail, celebrate every win, and rise with a community that pushes you forward. SEQUORR transforms how you experience fitness.</p>
-                <a href="waitlist.html" class="cta-button">Download Free</a>
+                
+                <!--interactive button-->
+                <a href="waitlist.html" class="cta-button-interactive">
+                    <span class="button-text">Download Here</span>
+                    <div class="button-hover-content">
+                        <span>Download Here</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                    <div class="button-bg-expand"></div>
+                </a>
             </div>
+
             <div class="phone-mockup">
                 <div class="iphone">
                     <div class="iphone-screen">
@@ -718,80 +880,155 @@
             </div>
         </div>
     </section>
-
-    <section class="feature-section">
-        <div class="feature-content">
-            <div class="feature-text">
-                <h2>Track <span style="color: #2aff00;">Everything</span> That Matters</h2>
-                <p>From calories burned to sleep quality, SEQUORR captures comprehensive data that gives you the full picture of your fitness journey.</p>
-                <ul class="feature-list">
-                    <li>Hydration monitoring throughout the day</li>
-                    <li>Nutrition logging with smart meal recognition</li>
-                    <li>Real-time activity tracking with precision metrics</li>
-                    <li>Sleep analysis and recovery insights</li>
-                </ul>
-            </div>
-            <div class="feature-visual">
-                <div style="text-align: center; color: #8d958e;">
-                    <div style="font-size: 64px; margin-bottom: 16px;"></div>
-                    <p style="font-size: 18px;">Comprehensive tracking<br>meets intelligent insights</p>
+    
+    <section class="featured-cards-section" style="padding: 120px 5%; background: #0A0A0A;">
+        <div class="feature-cards-container" style="max-width: 1400px; margin: 0 auto; display: grid; gap: 60px;">
+            <article class="relative flex max-w-4xl flex-col items-start justify-between rounded-3xl p-16 border border-[rgba(1,111,50,0.3)] bg-[rgba(1,111,50,0.05)] ml-0 transform -translate-y-8">
+            <!-- Border Beam -->
+                <div 
+                    style="
+                        --border-width: 2;
+                        --size: 200;
+                        --color-from: #2aff00;
+                        --color-to: #1a9b00;
+                        --delay: 0s;
+                        --anchor: 90;
+                        --duration: 8;
+                    "
+                    class="pointer-events-none absolute inset-0 rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent] ![mask-clip:padding-box,border-box] ![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(white,white)] after:absolute after:aspect-square after:w-[calc(var(--size)*1px)] after:animate-border-beam after:[animation-delay:var(--delay)] after:[background:linear-gradient(to_left,var(--color-from),var(--color-to),transparent)] after:[offset-anchor:calc(var(--anchor)*1%)_50%] after:[offset-path:rect(0_auto_auto_0_round_calc(var(--size)*1px))]">
                 </div>
-            </div>
+            
+            <!-- Content -->
+                <div class="relative z-10 w-full">
+                    <h2 class="text-5xl font-bold mb-8">
+                        Track <span class="text-[#2aff00]">Everything</span> That Matters
+                    </h2>
+                    
+                    <p class="text-lg text-gray-400 mb-10">
+                        From calories burned to sleep quality, SEQUORR provides data that gives you the full picture of your fitness journey.
+                    </p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Hydration monitoring throughout the day</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Nutrition logging with smart meal recognition</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Real-time activity tracking with precision metrics</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Sleep analysis and recovery insights</span>
+                        </li>
+                    </ul>
+                </div>
+            </article>
         </div>
     </section>
 
-    <section class="feature-section">
-        <div class="feature-content">
-            <div class="feature-text">
-                <h2>Challenge <span style="color: #2aff00;">Yourself</span> Daily</h2>
-                <p>Set personalized goals, join community challenges, and watch your progress unfold. Every step forward is a victory worth celebrating.</p>
-                <ul class="feature-list">
-                    <li>Achievement badges and streak tracking</li>
-                    <li>Community leaderboards and social motivation</li>
-                    <li>Custom goal setting for any fitness level</li>
-                    <li>Weekly challenges to keep you motivated</li>
-                </ul>
-            </div>
-            <div class="feature-visual">
-                <div style="text-align: center; color: #8d958e;">
-                    <div style="font-size: 64px; margin-bottom: 16px;"></div>
-                    <p style="font-size: 18px; direction: ltr;">Turn goals into habits,<br>habits into transformation</p>
+    <section class="featured-cards-section" style="padding: 120px 5%; background: #0A0A0A;">
+        <div class="feature-cards-container" style="max-width: 1400px; margin: 0 auto; display: grid; gap: 60px;"></div>  
+            <article class="relative flex max-w-4xl flex-col items-start justify-between rounded-3xl p-16 border border-[rgba(1,111,50,0.3)] bg-[rgba(1,111,50,0.05)] ml-auto">
+                    
+                <!-- Border Beam -->
+                <div 
+                    style="
+                        --border-width: 2;
+                        --size: 200;
+                        --color-from: #2aff00;
+                        --color-to: #1a9b00;
+                        --delay: 0s;
+                        --anchor: 90;
+                        --duration: 8;
+                    "
+                    class="pointer-events-none absolute inset-0 rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent] ![mask-clip:padding-box,border-box] ![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(white,white)] after:absolute after:aspect-square after:w-[calc(var(--size)*1px)] after:animate-border-beam after:[animation-delay:var(--delay)] after:[background:linear-gradient(to_left,var(--color-from),var(--color-to),transparent)] after:[offset-anchor:calc(var(--anchor)*1%)_50%] after:[offset-path:rect(0_auto_auto_0_round_calc(var(--size)*1px))]">
                 </div>
-            </div>
+                    
+                <!-- Content -->
+                <div class="relative z-10 w-full">
+                    <h2 class="text-5xl font-bold mb-8">
+                        Challenge <span class="text-[#2aff00]">Yourself</span> Daily
+                    </h2>
+                        
+                    <p class="text-lg text-gray-400 mb-10">
+                        Set personalized goals, join community challenges, and watch your progress unfold. Every step forward is a victory worth celebrating.
+                    </p>
+                        
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Achievement badges and streak tracking</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Community leaderboards and social motivation</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Custom goal setting for any fitness level</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Weekly challenges to keep you motivated</span>
+                        </li>
+                    </ul>
+                </div>
+            </article>
         </div>
     </section>
 
-    <section class="feature-section">
-        <div class="feature-content">
-            <div class="feature-text">
-                <h2>Rise <span style="color: #2aff00;">Together</span></h2>
-                <p>Connect with athletes who share your drive. Share achievements, compete in challenges, and discover what you're truly capable of.</p>
-                <ul class="feature-list">
-                    <li>Connect with friends and fitness communities</li>
-                    <li>Group challenges and team competitions</li>
-                    <li>Personalized health tips and motivation</li>
-                    <li>Social feed to share your wins and progress</li>
-                </ul>
-            </div>
-            <div class="feature-visual">
-                <div style="text-align: center; color: #8d958e;">
-                    <div style="font-size: 64px; margin-bottom: 16px;"></div>
-                    <p style="font-size: 18px;">Your community,<br>your support system</p>
+    <section class="featured-cards-section" style="padding: 120px 5%; background: #0A0A0A;">
+        <div class="feature-cards-container" style="max-width: 1400px; margin: 0 auto; display: grid; gap: 60px;">
+            <article class="relative flex max-w-4xl flex-col items-start justify-between rounded-3xl p-16 border border-[rgba(1,111,50,0.3)] bg-[rgba(1,111,50,0.05)] ml-0 transform translate-y-8">
+                    
+                <!-- Border Beam -->
+                <div 
+                    style="
+                        --border-width: 2;
+                        --size: 200;
+                        --color-from: #2aff00;
+                        --color-to: #1a9b00;
+                        --delay: 0s;
+                        --anchor: 90;
+                        --duration: 8;
+                    "
+                    class="pointer-events-none absolute inset-0 rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent] ![mask-clip:padding-box,border-box] ![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(white,white)] after:absolute after:aspect-square after:w-[calc(var(--size)*1px)] after:animate-border-beam after:[animation-delay:var(--delay)] after:[background:linear-gradient(to_left,var(--color-from),var(--color-to),transparent)] after:[offset-anchor:calc(var(--anchor)*1%)_50%] after:[offset-path:rect(0_auto_auto_0_round_calc(var(--size)*1px))]">
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="app-hero" style="min-height: 70vh;">
-        <div style="text-align: center; max-width: 800px;">
-            <h1 style="font-size: 56px; margin-bottom: 24px;">
-                Ready to <span class="gradient-text">Transform?</span>
-            </h1>
-            <p style="font-size: 20px; color: #8d958e; margin-bottom: 40px;">
-                Join thousands of athletes who are reimagining their fitness journey with SEQUORR.
-            </p>
-            <a href="waitlist.html" class="cta-button" style="margin-right: 16px;">Download Free</a>
-            <a href="index.html" class="cta-button" style="background: transparent; color: #2aff00; border: 2px solid #1a9b00;">Back Home</a>
+                    
+                <!-- Content -->
+                <div class="relative z-10 w-full">
+                    <h2 class="text-5xl font-bold mb-8">
+                        Rise <span class="text-[#2aff00]">Together</span>
+                    </h2>
+                        
+                    <p class="text-lg text-gray-400 mb-10">
+                        Share achievements, compete in challenges, and discover what you're truly capable of.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Connect with friends and fitness communities</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Group challenges and team competitions</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Personalized health tips and motivation</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
+                            <span class="text-gray-300">Social feed to share your wins and progress</span>
+                        </li>
+                    </ul>
+                </div>
+            </article>
         </div>
     </section>
 
