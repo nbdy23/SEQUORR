@@ -148,6 +148,92 @@
             box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
         }
 
+        /* Interactive CTA Button with Arrow */
+        .cta-button-interactive {
+            position: relative;
+            width: auto;
+            min-width: 180px;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 50px;
+            border: 2px solid #2aff00;
+            background: #0A0A0A;
+            padding: 14px 32px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-interactive .button-text {
+            display: inline-block;
+            transform: translateX(4px);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-interactive:hover .button-text {
+            transform: translateX(48px);
+            opacity: 0;
+        }
+
+        .cta-button-interactive .button-hover-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 100%;
+            width: 100%;
+            color: #0A0A0A;
+            transform: translateX(48px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-interactive:hover .button-hover-content {
+            transform: translateX(-4px);
+            opacity: 1;
+        }
+
+        .cta-button-interactive .button-bg-expand {
+            position: absolute;
+            left: 20%;
+            top: 40%;
+            height: 8px;
+            width: 8px;
+            border-radius: 8px;
+            background: #2aff00;
+            transition: all 0.3s ease;
+            transform: scale(1);
+            opacity: 0;
+            z-index: 0;
+        }
+        
+        .cta-button-interactive:hover .button-bg-expand {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            transform: scale(1.8);
+            background: #2aff00;
+            opacity: 1;
+        }
+
+        /* Arrow icon */
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
         /* Feature Modules */
         .module {
             min-height: 100vh;
@@ -500,26 +586,26 @@
             .module-text h2 { font-size: 36px; }
             .nav-links { display: none; }
             .footer-cta h2 { font-size: 40px;
-        }
-        .footer-cta p { 
-            font-size: 18px;
-        }
-        /* Adjust logo size on mobile */
-        .footer-cta .cta-button, .footer-cta .cta-secondary {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin: 12px auto;
-            text-align: center;
-        }
-        .footer-cta .cta-secondary {
-            margin-left: auto;
-        }
+            }
+            .footer-cta p { 
+                font-size: 18px;
+            }
+            /* Adjust logo size on mobile */
+            .footer-cta .cta-button, .footer-cta .cta-secondary {
+                display: block;
+                width: 100%;
+                max-width: 300px;
+                margin: 12px auto;
+                text-align: center;
+            }
+            .footer-cta .cta-secondary {
+                margin-left: auto;
+            }
         }
     </style>
 </head>
 <body>
-    <nav id="navbar">
+    <nav style= "background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px);">
         <a href="index.html" class="logo">
             <img src="logo/sequorr-logo_01.svg" alt="Sequorr" class="logo-img">
         </a>
@@ -534,7 +620,17 @@
     <section class="hero">
         <h1>Imagination Beyond <span class="gradient-text">Limits</span></h1>
         <p>Transform your fitness journey with intelligent tracking, real-time insights, and a community that pushes you forward.</p>
-        <a href="waitlist.html" class="cta-button">Start Your Journey</a>
+        <!--interactive button-->
+                <a href="waitlist.html" class="cta-button-interactive">
+                    <span class="button-text">Start Your Journey</span>
+                    <div class="button-hover-content">
+                        <span>Start Your Journey</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                    <div class="button-bg-expand"></div>
+                </a>
     </section>
 
     <section class="module" id="app-features">
@@ -587,6 +683,7 @@
         </div>
     </div>
     </section>
+
     <!-- Animated Beam Section -->
     <section class="module">
         <div class="module-content">
@@ -600,7 +697,6 @@
                 <div class="beam-container" id="beamContainer">
                     <div class="beam-gradient-line"></div>
                     <canvas class="beam-canvas" id="beamCanvas"></canvas>
-                    
                     <div class="beam-content">
                         <div class="beam-column" id="leftColumn">
                             <div class="beam-circle" data-beam="source">
@@ -633,7 +729,6 @@
                                 </svg>
                             </div>
                         </div>
-                        
                         <div class="beam-column">
                             <div class="beam-circle" data-beam="center" style="width: 80px; height: 80px; background: rgba(42, 255, 0, 0.2); border-color: rgba(42, 255, 0, 0.5);">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 40px; height: 40px;">
@@ -643,7 +738,6 @@
                                 </svg>
                             </div>
                         </div>
-                        
                         <div class="beam-column">
                             <div class="beam-circle" data-beam="target">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -665,7 +759,7 @@
         <a href="demo.html" class="cta-secondary">Watch Demo</a>
     </section>
 
-    <footer>
+    <footer class="theme-default">
         <p>&copy; 2025 Sequorr. Imagination Beyond Limits.</p>
     </footer>
 
@@ -708,6 +802,7 @@
             });
         });
     </script>
+
     <script type="module">
         import createGlobe from 'https://cdn.skypack.dev/cobe'
         
@@ -740,6 +835,7 @@
             }
         })
     </script>
+
     <script>
     // Animated Beam Effect
     (function() {
