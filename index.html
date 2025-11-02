@@ -174,7 +174,7 @@
             transition: all 0.3s ease;
         }
 
-        .cta-button-interactive:hover .button-text {
+        .cta-button-interactive:hover .button-text, .cta-button-interactive.button-active .button-text {
             transform: translateX(48px);
             opacity: 0;
         }
@@ -196,7 +196,7 @@
             transition: all 0.3s ease;
         }
 
-        .cta-button-interactive:hover .button-hover-content {
+        .cta-button-interactive:hover .button-hover-content, .cta-button-interactive.button-active .button-hover-content {
             transform: translateX(-4px);
             opacity: 1;
         }
@@ -215,7 +215,7 @@
             z-index: 0;
         }
         
-        .cta-button-interactive:hover .button-bg-expand {
+        .cta-button-interactive:hover .button-bg-expand, .cta-button-interactive.button-active .button-bg-expand {
             left: 0;
             top: 0;
             height: 100%;
