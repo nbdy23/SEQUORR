@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEQUORR - Roadmap</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -11,13 +14,50 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: #0A0A0A;
-            color: #FFFFFF;
+        html {
             overflow-x: hidden;
+            width: 100%;
         }
 
+        /* Dark Mode (Default) */
+        :root,
+        [data-theme="dark"] {
+            --bg: #000000;
+            --fg: #ffffff;
+            --gray: #666666;
+            --gray-light: #999999;
+            --border: #333333;
+            --accent: #2aff00;
+        }
+
+        /* Light Mode */
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --fg: #000000;
+            --gray: #666666;
+            --gray-light: #999999;
+            --border: #e5e5e5;
+            --accent: #2aff00;
+        }
+
+        /* Base */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            overflow-x: hidden;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--fg);
+        }
+
+        p {
+            color: var(--gray);
+        }
+
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -27,15 +67,15 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(1, 111, 50, 0.2);
+            transition: background 0.2s ease;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            text-decoration: none;
         }
 
         .logo-img {
@@ -48,22 +88,59 @@
             transform: scale(1.05);
         }
 
+        [data-theme="light"] .logo-img {
+            filter: invert(1);
+        }
+
         .nav-links {
             display: flex;
             gap: 40px;
             list-style: none;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+
+        .nav-links li {
+            display: flex;
+            align-items: center;
         }
 
         .nav-links a {
-            color: #FFFFFF;
+            color: var(--fg);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
         }
 
         .nav-links a:hover {
-            color: #2aff00;
+            color: var(--accent);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            color: var(--fg);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--accent);
+            transform: rotate(180deg);
+        }
+
+        .theme-icon {
+            pointer-events: none;
         }
 
         .roadmap-container {
@@ -132,17 +209,19 @@
         .social-links {
             display: flex;
             gap: 16px;
+            margin-top: 32px;
             flex-wrap: wrap;
         }
 
         .social-button {
-            padding: 16px 32px;
-            background: rgba(1, 111, 50, 0.2);
-            border: 2px solid rgba(1, 111, 50, 0.4);
-            border-radius: 12px;
-            color: #FFFFFF;
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            color: var(--fg);
             text-decoration: none;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 500;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -150,31 +229,27 @@
         }
 
         .social-button:hover {
-            border-color: #2aff00;
-            background: rgba(1, 111, 50, 0.2);
-            transform: translateY(-2px);
+            border-color: var(--fg);
+            transform: scale(1.1);
         }
 
-        .social-button.reddit:hover {
-            border-color: #1a9b00;
-            background: rgba(1, 111, 50, 0.2);
-        }
-
-        .social-button.instagram:hover {
-            border-color: #1a9b00;
-            background: rgba(1, 111, 50, 0.2);
-        }
-
-        .social-button.youtube {
-            background: rgba(1, 111, 50, 0.2);
-            border-color: rgba(1, 111, 50, 0.4);
-            color: #1a9b00;
-            cursor: not-allowed;
+        .social-button i {
+            font-size: 18px;
         }
 
         .social-button.discord:hover {
-            border-color: #1a9b00;
-            background: rgba(1, 111, 50, 0.2);
+            border-color: #5865f2;
+            color: #5865f2;
+        }
+
+        .social-button.instagram:hover {
+            border-color: #e1306c;
+            color: #e1306c;
+        }
+
+        .social-button.youtube:hover {
+            border-color: var(--gray);
+            color: var(--accent);
         }
 
         .form-group {
@@ -193,13 +268,13 @@
         .form-select {
             width: 100%;
             padding: 16px 20px;
-            background: rgba(1, 111, 50, 0.2);
-            border: 2px solid rgba(1, 111, 50, 0.4);
-            border-radius: 12px;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 8px;
             font-size: 15px;
-            color: #FFFFFF;
+            color: var(--fg);
             font-family: inherit;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .form-textarea {
@@ -211,13 +286,40 @@
         .form-textarea:focus,
         .form-select:focus {
             outline: none;
-            border-color: #1a9b00;
-            background: rgba(1, 111, 50, 0.2);
+            border-color: var(--accent);
         }
 
         .form-input::placeholder,
         .form-textarea::placeholder {
-            color: #8d958e;
+            color: var(--gray);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 15px;
+            color: var(--fg);
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: var(--bg);
+            color: var(--fg);
+            padding: 12px;
+        }
+
+        .form-select option[value=""] {
+            color: var(--gray);
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
         }
 
         .submit-button {
@@ -334,6 +436,7 @@
         }
     </style>
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <body>
     <nav>
         <a href="index.html" class="logo">
@@ -343,33 +446,41 @@
             <li><a href="app.html">App</a></li>
             <li><a href="demo.html">Demo</a></li>
             <li><a href="waitlist.html">Join Waitlist</a></li>
+            <li>
+                <button data-theme-toggle class="theme-toggle-btn" aria-label="Toggle theme">
+                    <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </button>
+            </li>
         </ul>
     </nav>
 
     <div class="roadmap-container">
         <div class="hero-section">
             <h1>Shape the <span class="gradient-text">Future</span></h1>
-            <p class="subtitle">Your feedback directly influences what we build next</p>
+            <p class="subtitle">Your feedback directly influences what we build next!</p>
         </div>
 
         <div class="feedback-sections">
             <!-- Join the Discussion -->
             <div class="feedback-card">
                 <h2 class="card-title">Join the Discussion</h2>
-                <p class="card-description">Connect with the community, share ideas, and stay updated on SEQUORR's development</p>
+                <p class="card-description">Connect with the community, share ideas, and stay updated on Sequorr's development</p>
                 
                 <div class="social-links">
                     <a href="https://reddit.com/r/SEQUORR" target="_blank" class="social-button reddit">
-                        <span>🔴</span> Reddit
+                        <i class="fa-brands fa-reddit"></i>Reddit
                     </a>
                     <a href="https://www.instagram.com/mapp_sequorr/" target="_blank" class="social-button instagram">
-                        <span>📸</span> Instagram
+                        <i class="fa-brands fa-instagram"></i>Instagram
                     </a>
                     <a href="https://discord.gg/eAVNqFcb" target="_blank" class="social-button discord">
-                        <span>💬</span> Discord
+                        <i class="fa-brands fa-discord"></i>Discord
                     </a>
-                    <span class="social-button youtube">
-                        <span>▶️</span> YouTube (Coming Soon)
+                    <span class="social-button youtube" target="_blank" class="social-button youtube">
+                        <i class="fa-brands fa-youtube"></i>Youtube
                     </span>
                 </div>
             </div>
@@ -428,6 +539,68 @@
                 setTimeout(() => successMessage.classList.remove('show'), 5000);
             }, 500);
         });
+    </script>
+
+    <script>
+        // Theme Toggle Script 
+        (function() {
+            // Get system preference
+            const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
+            
+            function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
+                if (localStorageTheme !== null) {
+                    return localStorageTheme;
+                }
+                if (systemSettingDark.matches) {
+                    return "dark";
+                }
+                return "light";
+            }
+            
+            function updateButton({ buttonEl, isDark }) {
+                const newCta = isDark ? "Change to light theme" : "Change to dark theme";
+
+                buttonEl.setAttribute("aria-label", newCta);
+            }
+            
+            function updateThemeOnHtmlEl({ theme }) {
+                document.querySelector("html").setAttribute("data-theme", theme);
+            }
+            
+            // Get stored theme
+            const localStorageTheme = localStorage.getItem("theme");
+            
+            // Calculate current theme
+            let currentThemeSetting = calculateSettingAsThemeString({ 
+                localStorageTheme, 
+                systemSettingDark 
+            });
+            
+            // Target the button
+            const button = document.querySelector("[data-theme-toggle]");
+            
+            if (!button) {
+                console.error("Theme toggle button not found");
+                return;
+            }
+            
+            // Set initial state
+            updateButton({ buttonEl: button, isDark: currentThemeSetting === "dark" });
+            updateThemeOnHtmlEl({ theme: currentThemeSetting });
+            
+            // Add click listener
+            button.addEventListener("click", () => {
+                const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+                
+                // Update everything
+                updateButton({ buttonEl: button, isDark: newTheme === "dark" });
+                updateThemeOnHtmlEl({ theme: newTheme });
+                localStorage.setItem("theme", newTheme);
+                
+                // Update current theme in memory
+                currentThemeSetting = newTheme;
+            });
+        })();
     </script>
 </body>
 </html>
