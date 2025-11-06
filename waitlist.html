@@ -18,6 +18,76 @@
             overflow-x: hidden;
         }
 
+        :root[data-theme="light"] {
+            --bg-color: #FFFFFF;
+            --text-color: #0A0A0A;
+        }
+
+        [data-theme="light"] {
+            --color-bg: #FFFFFF;
+            --text-color:#0A0A0A
+        }
+        
+        [data-theme="dark"] {
+            --color-bg: #0a0a0a;
+            --text-color:#ffffff;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        button {
+            font-size: 2rem;
+            font-weight: bold;
+            padding:  0.5rem 1rem;
+            transition: all var(--global-transition-time) ease-in-out;
+            border-radius: 2rem;
+            cursor: pointer;
+            color: var(--color-fg);
+            background-color: var(--color-bg);
+            border: 0.25rem solid var(--color-fg);
+        }
+        
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid rgba(42, 255, 0, 0.3);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+            color: #ffffff;
+        }
+
+        .theme-toggle-btn:hover {
+            background: rgba(42, 255, 0, 0.1);
+            border-color: #2aff00;
+            transform: rotate(180deg);
+        }
+
+        .theme-icon {
+            pointer-events: none;
+        }
+
+        /* Change icon based on theme */
+        [data-theme="light"] .theme-toggle-btn {
+            color: #0A0A0A;
+            border-color: rgba(10, 10, 10, 0.3);
+        }
+
+        [data-theme="light"] .theme-toggle-btn:hover {
+            background: rgba(10, 10, 10, 0.1);
+            border-color: #0A0A0A;
+        }
+
+        /* Navigation - defaults to dark mode*/
         nav {
             position: fixed;
             top: 0;
@@ -29,7 +99,38 @@
             z-index: 1000;
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(1, 111, 50, 0.4);
+            transition: background 0.3s ease;
+        }
+
+        /* nav links dark mode with white txt */
+        [data-theme="light"] nav {
+            background: rgba(255, 255, 255, 0.95) !important; /* white nav for light mode */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /*shadow in light mode*/
+        }
+
+        /* nav links light mode with black txt */
+        [data-theme="light"] .nav-links a {
+            color: #0a0a0a !important;
+        }
+
+        /* logo in light mode */
+        [data-theme="light"] .logo-img {
+            filter: brightness(0.88); /* makes logo black */
+        }
+
+        /* theme toggle button in light mode */
+        [data-theme="light"] .theme-toggle-btn {
+            color: #0A0A0A;
+            border-color: rgba(10, 10, 10, 0.3);
+        }
+
+        [data-theme="light"] .theme-toggle-btn:hover {
+            background: rgba(10, 10, 10, 0.1);
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.1);
         }
 
         .logo {
@@ -52,6 +153,14 @@
             display: flex;
             gap: 40px;
             list-style: none;
+            padding: 0px;
+            margin: 0;
+            align-items: center;
+        }
+
+        .nav-links li {
+            display: flex;
+            align-items: center;
         }
 
         .nav-links a {
@@ -74,6 +183,40 @@
             align-items: center;
             padding: 120px 5% 80px;
             text-align: center;
+        }
+
+        /* nav links white in light mode */
+        [data-theme="light"] .nav-links a {
+            color: #ffffff;
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(10, 10, 10, 0.8);
+        }
+
+        .theme-toggle-btn {
+            font-size: 1rem;
+            font-weight: normal;
+            background: transparent;
+            border: 1px solid rgba(42, 255, 0, 0.3);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            color: #ffffff;
+        }
+
+        .theme-toggle-btn:hover {
+            background: rgba(42, 255, 0, 0.1);
+            border-color: #2aff00;
+            transform: rotate(180deg);
+        }
+
+        .theme-icon {
+            pointer-events: none;
         }
 
         .content {
@@ -170,6 +313,92 @@
         .success-message.show {
             display: block;
         }
+        /* Interactive CTA Button with Arrow */
+        .cta-button-interactive {
+            position: relative;
+            width: auto;
+            min-width: 180px;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 50px;
+            border: 2px solid #ffffff #0A0A0A;
+            background: #ffffff;
+            padding: 16px 34px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0A0A0A;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-interactive .button-text {
+            display: inline-block;
+            transform: translateX(4px);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-interactive:hover .button-text {
+            transform: translateX(48px);
+            opacity: 0;
+        }
+
+        .cta-button-interactive .button-hover-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 100%;
+            width: 100%;
+            color: #0A0A0A;
+            transform: translateX(48px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button-interactive:hover .button-hover-content {
+            transform: translateX(-4px);
+            opacity: 1;
+        }
+
+        .cta-button-interactive .button-bg-expand {
+            position: absolute;
+            left: 20%;
+            top: 40%;
+            height: 8px;
+            width: 8px;
+            border-radius: 8px;
+            background: #2aff00;
+            transition: all 0.3s ease;
+            transform: scale(1);
+            opacity: 0;
+            z-index: 0;
+        }
+        
+        .cta-button-interactive:hover .button-bg-expand {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            transform: scale(1.8);
+            background: #2aff00;
+            opacity: 1;
+        }
+
+        /* Arrow icon */
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
         /* Footer CTA */
         footer {
             padding: 40px 5%;
@@ -201,15 +430,21 @@
             <li><a href="app.html">App</a></li>
             <li><a href="community.html">Community</a></li>
             <li><a href="demo.html">Demo</a></li>
+            <li> 
+                <button data-theme-toggle class="theme-toggle-btn" aria-label="Toggle theme">
+                    <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </button>
+            </li>
         </ul>
     </nav>
 
     <div class="waitlist-container">
         <div class="content">
-            <div class="launch-date">Launching November 1, 2025</div>
-            <h1>Join the <span class="gradient-text">Waitlist</span></h1>
-            <p class="description">Be the first to experience SEQUORR when we launch.</p>
-
+            <h1>Join Our <span class="gradient-text">Waitlist</span></h1>
+            <p class="description">Be the first to experience Sequorr when we launch.</p>
             <form id="waitlistForm" action="YOUR_FORM_ENDPOINT_HERE" method="POST">
                 <div class="form-group">
                     <input type="text" name="name" class="form-input" placeholder="Name" required>
@@ -321,6 +556,86 @@
                 submitButton.textContent = 'Join Waitlist';
             }
         });
+
+        // Theme toggle logic 
+        // Better mobile button interaction
+            document.querySelectorAll('.cta-button-interactive').forEach(button => {
+                let touchTimeout;
+                
+                button.addEventListener('touchstart', function(e) {
+                    this.classList.add('button-active');
+                });
+                
+                button.addEventListener('touchend', function(e) {
+                    clearTimeout(touchTimeout);
+                    touchTimeout = setTimeout(() => {
+                        this.classList.remove('button-active');
+                    }, 300); // Keep animation for 300ms
+                });
+            });
+        </script>
+        
+        <script>
+            // Theme Toggle Script 
+            (function() {
+                // Get system preference
+                const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
+                
+                function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
+                    if (localStorageTheme !== null) {
+                        return localStorageTheme;
+                    }
+                    if (systemSettingDark.matches) {
+                        return "dark";
+                    }
+                    return "light";
+                }
+                
+                function updateButton({ buttonEl, isDark }) {
+                    const newCta = isDark ? "Change to light theme" : "Change to dark theme";
+
+                    buttonEl.setAttribute("aria-label", newCta);
+                }
+                
+                function updateThemeOnHtmlEl({ theme }) {
+                    document.querySelector("html").setAttribute("data-theme", theme);
+                }
+                
+                // Get stored theme
+                const localStorageTheme = localStorage.getItem("theme");
+                
+                // Calculate current theme
+                let currentThemeSetting = calculateSettingAsThemeString({ 
+                    localStorageTheme, 
+                    systemSettingDark 
+                });
+                
+                // Target the button
+                const button = document.querySelector("[data-theme-toggle]");
+                
+                if (!button) {
+                    console.error("Theme toggle button not found");
+                    return;
+                }
+                
+                // Set initial state
+                updateButton({ buttonEl: button, isDark: currentThemeSetting === "dark" });
+                updateThemeOnHtmlEl({ theme: currentThemeSetting });
+                
+                // Add click listener
+                button.addEventListener("click", () => {
+                    const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+                    
+                    // Update everything
+                    updateButton({ buttonEl: button, isDark: newTheme === "dark" });
+                    updateThemeOnHtmlEl({ theme: newTheme });
+                    localStorage.setItem("theme", newTheme);
+                    
+                    // Update current theme in memory
+                    currentThemeSetting = newTheme;
+                });
+            })();
+        </script>
     </script>
 </body>
 </html>
