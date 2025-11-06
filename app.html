@@ -332,6 +332,10 @@
         }
 
         .phone-mockup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
             perspective: 1000px;
         }
 
@@ -907,9 +911,31 @@
             padding: 120px 5% !important;
         }
 
+        @media (max-width: 1024px) {
+            .iphone {
+                width: 300px;
+                height: 618px;
+            }
+        }
+
         @media (max-width: 768px) {
             h1 { 
                 font-size: 48px; 
+            }
+
+            .app-hero {
+                padding: 100px 5% 60px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .iphone {
+                width: min(85vw, 320px);
+                height: auto;
+                aspect-ratio: 340/700;
             }
             
             .hero p { 
@@ -932,6 +958,33 @@
                 display: none;
             }
             
+            @media (max-width: 480px) {
+                .iphone {
+                    width: min(90vw, 280px);
+                    height: auto;
+                    aspect-ratio: 340 / 700;
+                }
+
+                .hero-text h1 {
+                    font-size: 32px;
+                }
+
+                .hero-text p {
+                    font-size: 14px;
+                }
+
+            @media (max-height: 600px) and (orientation: landscape) {
+                .app-hero {
+                    min-height: auto;
+                    padding: 80px 5% 40px;
+                }
+
+                .iphone {
+                    width: 240px;
+                    height: 494px;
+                }
+            }
+        }
             /* Only reduce padding on mobile */
             .feature-cards-section {
                 padding: 80px 5% !important; /* Keep decent spacing even on mobile */
