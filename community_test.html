@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEQUORR - Roadmap</title>
+
+    <link rel="stylesheet" href="css/shared/variables.css">
+    <link rel="stylesheet" href="css/shared/base.css">
+    <link rel="stylesheet" href="css/shared/components.css">
+    <link rel="stylesheet" href="css/shared/pages.css">
+    <link rel="stylesheet" href="css/shared/responsive.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <!-- dark mode logo-->
+            <img src="logo/sequorr-logo_01.svg" alt="Sequorr" class="logo-img logo-dark">
+            <!-- light mode logo-->
+             <img src="logo/sequorr-logo_02.svg" alt="Sequorr" class="logo-img logo-light">
+        </a>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="app.html">App</a></li>
+            <li><a href="demo.html">Demo</a></li>
+            <li><a href="waitlist.html">Join Waitlist</a></li>
+            <li>
+                <button data-theme-toggle class="theme-toggle-btn" aria-label="Toggle theme">
+                    <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="roadmap-container">
+        <div class="hero-section">
+            <h1>Shape the <span class="gradient-text">Future</span></h1>
+            <p class="subtitle">Your feedback directly influences what we build next!</p>
+        </div>
+
+        <div class="feedback-sections">
+            <!-- Join the Discussion -->
+            <div class="feedback-card">
+                <h2 class="card-title">Join the Discussion</h2>
+                <p class="card-description">Connect with the community, share ideas, and stay updated on Sequorr's development</p>
+                
+                <div class="social-links">
+                    <a href="https://reddit.com/r/SEQUORR" target="_blank" class="social-button reddit">
+                        <i class="fa-brands fa-reddit"></i>Reddit
+                    </a>
+                    <a href="https://www.instagram.com/mapp_sequorr/" target="_blank" class="social-button instagram">
+                        <i class="fa-brands fa-instagram"></i>Instagram
+                    </a>
+                    <a href="https://discord.gg/eAVNqFcb" target="_blank" class="social-button discord">
+                        <i class="fa-brands fa-discord"></i>Discord
+                    </a>
+                    <span class="social-button youtube" target="_blank" class="social-button youtube">
+                        <i class="fa-brands fa-youtube"></i>Youtube
+                    </span>
+                </div>
+            </div>
+
+            <!-- Submit Your Ideas -->
+            <div class="feedback-card">
+                <h2 class="card-title">Submit Your Ideas</h2>
+                <p class="card-description">Have a feature request or suggestion? We'd love to hear from you</p>
+
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-input" placeholder="Your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select name="category" class="form-select" required>
+                            <option value="">Select a category</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="improvement">Improvement</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea name="message" class="form-textarea" placeholder="Tell us your thoughts..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Submit Feedback</button>
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    ✓ Thank you! Your feedback has been received.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/shared/theme.js"></script>
+    <script src="js/shared/menu.js"></script>
+    <script src="js/form.js"></script>
+</body>
+</html>

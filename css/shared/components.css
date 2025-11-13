@@ -1,0 +1,204 @@
+/* buttons */
+    .cta-button {
+        padding: 20px 48px;
+        background: #2AFF00;
+        color: #000000;
+        border: none;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0 8px;
+        }
+
+    .cta-button:hover {
+        background: #1A9B00;
+        transform: translateY(-2px);
+    }
+    
+    .cta-secondary {
+        background: transparent;
+        color: #2AFF00;
+        border: 2px solid #1A9B00;
+    }
+
+    .cta-secondary:hover {
+        background: #2AFF00;
+        color: #000000;
+    }
+
+    .submit-button {
+        width: 100%;
+        padding: 18px;
+        background: #2aff00;
+        color: #0A0A0A;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .submit-button:hover {
+        background: #FFFFFF;
+        transform: translateY(-2px);
+    }
+
+    /* social buttons */
+
+    .social-links {
+        display: flex;
+        gap: 16px;
+        margin-top: 32px;
+        flex-wrap: wrap;
+    }
+
+    .social-button {
+        padding: 12px 24px;
+        background: transparent;
+        border: 2px solid var(--border);
+        border-radius: 50px;
+        color: var(--fg);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .social-button:hover {
+        border-color: var(--fg);
+        transform: scale(1.1);
+    }
+
+    .social-button i {
+        font-size: 18px;
+    }
+
+    .social-button.discord:hover {
+        border-color: #5865f2;
+        color: #5865f2;
+    }
+
+    .social-button.instagram:hover {
+        border-color: #e1306c;
+        color: #e1306c;
+    }
+
+    .social-button.youtube:hover {
+        border-color: var(--gray);
+        color: var(--accent);
+    }
+
+    /* cards */
+    .feedback-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 2px solid rgba(1, 111, 50, 0.2);
+        border-radius: 20px;
+        padding: 48px;
+        transition: all 0.3s ease;
+    }
+
+    .feedback-card:hover {
+        border-color: rgba(1, 111, 50, 0.4);
+    }
+
+    .card-title {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+
+    .card-description {
+        font-size: 16px;
+        color: #8d958e;
+        margin-bottom: 32px;
+        line-height: 1.6;
+    }
+
+    /* forms */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+        width: 100%;
+        padding: 16px 20px;
+        background: var(--bg);
+        border: 2px solid var(--border);
+        border-radius: 8px;
+        font-size: 15px;
+        color: var(--fg);
+        font-family: inherit;
+        transition: all 0.2s ease;
+    }
+
+    .form-textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+        outline: none;
+        border-color: var(--accent);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+        color: var(--gray);
+    }
+
+    .form-select {
+        width: 100%;
+        padding: 16px 20px;
+        background: var(--bg);
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        font-size: 15px;
+        color: var(--fg);
+        font-family: inherit;
+        transition: border-color 0.2s ease;
+        cursor: pointer;
+    }
+
+    .form-select option {
+        background: var(--bg);
+        color: var(--fg);
+        padding: 12px;
+    }
+
+    .form-select option[value=""] {
+        color: var(--gray);
+    }
+
+    .success-message {
+        display: none;
+        padding: 16px;
+        background: rgba(82, 196, 26, 0.1);
+        border: 2px solid rgba(82, 196, 26, 0.3);
+        border-radius: 12px;
+        color: #2aff00;
+        text-align: center;
+        margin-top: 16px;
+    }
+
+    .success-message.show {
+        display: block;
+    }

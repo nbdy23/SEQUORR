@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEQUORR - Join the Waitlist</title>
+
+    <link rel="stylesheet" href="css/waitlist.css">
+
+    <link rel="stylesheet" href="css/shared/base.css">
+    <link rel="stylesheet" href="css/shared/footer.css">
+    <link rel="stylesheet" href="css/shared/components.css">
+    <link rel="stylesheet" href="css/shared/responsive.css">
+    <link rel="stylesheet" href="css/shared/variables.css">
+
+    <link rel="stylesheet" href="css/layers/buttons.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <!-- dark mode logo-->
+            <img src="logo/sequorr-logo_01.svg" alt="Sequorr" class="logo-img logo-dark">
+            <!-- light mode logo-->
+             <img src="logo/sequorr-logo_02.svg" alt="Sequorr" class="logo-img logo-light">
+        </a>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="app.html">App</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="demo.html">Demo</a></li>
+            <li> 
+                <button data-theme-toggle class="theme-toggle-btn" aria-label="Toggle theme">
+                    <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="waitlist-container">
+        <div class="content">
+            <h1>Join Our <span class="gradient-text"> Waitlist</span></h1>
+            <p class="description"> Be the first to experience Sequorr when we launch.</p>
+
+            <form id="waitlistForm">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-input" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-input" placeholder="Email Address" required>
+                </div>
+                <button type="submit" class="submit-button">Join Waitlist</button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                ✓ You're on the list! Check your email.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Sequorr. Imagination Beyond Limits.</p>
+    </footer>
+
+    <script src="js/waitlist.js"></script>
+    <script src="js/shared/theme.js"></script>
+    <script src="js/shared/menu.js"></script>
+</body>
+</html>

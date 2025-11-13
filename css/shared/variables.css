@@ -1,0 +1,20 @@
+/* css variables - theme colors */
+:root,
+[data-theme="dark"] {
+    --bg: #000000;
+    --fg: #ffffff;
+    --gray: #666666;
+    --gray-light: #999999;
+    --border: #333333;
+    --accent: #2aff00;
+    }
+
+    /* Light Mode */
+    [data-theme="light"] {
+        --bg: #ffffff;
+        --fg: #000000;
+        --gray: #666666;
+        --gray-light: #999999;
+        --border: #e5e5e5;
+        --accent: #2aff00;
+    }

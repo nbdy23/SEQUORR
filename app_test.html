@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEQUORR - The App</title>
+    <link rel="stylesheet" href="css/shared/base.css">
+    <link rel="stylesheet" href="css/shared/components.css">
+    <link rel="stylesheet" href="css/shared/responsive.css">
+    <link rel="stylesheet" href="css/shared/variables.css">
+    <link rel="stylesheet" href="css/shared/footer.css">
+
+    <link rel="stylesheet" href="css/layers/iphone_mockup.css">
+    <link rel="stylesheet" href="css/layers/buttons.css">
+    <link rel="stylesheet" href="css/layers/app_buttons.css">
+
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <!-- Dark mode logo -->
+            <img src="logo/sequorr-logo_01.svg" alt="Sequorr" class="logo-img logo-dark">
+            <!-- Light mode logo -->
+            <img src="logo/sequorr-logo_02.svg" alt="Sequorr" class="logo-img logo-light">
+        </a>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="community.html">Community</a></li>
+            <li><a href="demo.html">Demo</a></li>
+            <li><a href="waitlist.html">Join Waitlist</a></li>
+            <li>
+                <button data-theme-toggle class="theme-toggle-btn" aria-label="Toggle theme">
+                    <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section with iPhone -->
+    <section class="app-hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Your Fitness.<br><span class="gradient-text">Reimagined.</span></h1>
+                <p>Track every detail, celebrate every win, and rise with a community that pushes you forward. Sequorr transforms how you experience fitness.</p>
+                
+                <a href="waitlist.html" class="cta-button"> Download Here</a>
+                    <div class="button-hover-content"></div>
+                    <div class="button-bg-expand"></div>
+                </a>
+            </div>
+
+            <div class="phone-mockup">
+                <div class="iphone">
+                    <div class="iphone-screen">
+                        <div class="notch"></div>
+                        <div class="app-content">
+                            <div class="app-header">
+                                <div class="user-info">
+                                    <div class="avatar">C</div>
+                                    <div class="greeting">
+                                        <span class="greeting-text">Good Morning</span>
+                                        <span class="username">Cuban Bro What's Up</span>
+                                    </div>
+                                </div>
+                                <div class="header-icons">
+                                    <div class="icon-badge streak-badge">🔥 0</div>
+                                    <div class="icon-badge notification-badge">
+                                        🔔
+                                        <div class="notification-dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date-banner">
+                                <span class="date-banner-icon">📅</span>
+                                <div>
+                                    <span class="date-text">Tuesday, September 30</span>
+                                    <span class="date-subtext">Let's make today count!</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="section-title">
+                                    Today's Progress
+                                    <span class="section-subtitle">0%</span>
+                                </div>
+                                <div class="progress-cards">
+                                    <div class="progress-card calories">
+                                        <span class="card-icon">🔥</span>
+                                        <span class="card-value">0</span>
+                                        <span class="card-label">Calories</span>
+                                    </div>
+                                    <div class="progress-card distance">
+                                        <span class="card-icon">📏</span>
+                                        <span class="card-value">0.0 mi</span>
+                                        <span class="card-label">Distance</span>
+                                    </div>
+                                    <div class="progress-card duration">
+                                        <span class="card-icon">⏱️</span>
+                                        <span class="card-value">0h 0m</span>
+                                        <span class="card-label">Duration</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quick-actions">
+                                <button class="action-button">
+                                    <div class="action-icon water">💧</div>
+                                    <span class="action-label">Log Water</span>
+                                </button>
+                                <button class="action-button">
+                                    <div class="action-icon meal">🍴</div>
+                                    <span class="action-label">Log Meal</span>
+                                </button>
+                                <button class="action-button">
+                                    <div class="action-icon sleep">🛏️</div>
+                                    <span class="action-label">Log Sleep</span>
+                                </button>
+                                <button class="action-button">
+                                    <div class="action-icon dashboard">➕</div>
+                                    <span class="action-label">Dashboard</span>
+                                </button>
+                            </div>
+                            <div class="goals-header">
+                                <div class="section-title">Today's Goals</div>
+                                <span class="view-all">view all</span>
+                            </div>
+                        </div>
+                        <div class="bottom-nav">
+                            <div class="nav-item active">
+                                <span class="nav-item-icon">🏠</span>
+                                <span>Home</span>
+                            </div>
+                            <div class="nav-item">
+                                <span class="nav-item-icon">🏃</span>
+                                <span>Activities</span>
+                            </div>
+                            <div class="nav-item">
+                                <span class="nav-item-icon">👥</span>
+                                <span>Social</span>
+                            </div>
+                            <div class="nav-item">
+                                <span class="nav-item-icon">🏆</span>
+                                <span>Challenges</span>
+                            </div>
+                            <div class="nav-item">
+                                <span class="nav-item-icon">👤</span>
+                                <span>Profile</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Feature Cards Section -->
+    <section class="featured-cards-section">
+        <div class="feature-cards-container">
+            <!-- Card 1: Track Everything -->
+            <article class="feature-card feature-card-left">
+                <span class="corner-mark top-right">+</span>
+                <span class="corner-mark top-left">+</span>
+                <span class="corner-mark bottom-right">+</span>
+                <span class="corner-mark bottom-left">+</span>
+                <div class="feature-content">
+                    <h2>Track <span class="gradient-text">Everything</span> That Matters</h2>
+                    
+                    <p>From calories burned to sleep quality, Sequorr provides data that gives you the full picture of your fitness journey.</p>
+                    
+                    <ul class="feature-list">
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Hydration monitoring throughout the day</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Nutrition logging with smart meal recognition</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Real-time activity tracking with precision metrics</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Sleep analysis and recovery insights</span>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Card 2: Challenge Yourself -->
+            <article class="feature-card feature-card-right">
+                <span class="corner-mark top-right">+</span>
+                <span class="corner-mark top-left">+</span>
+                <span class="corner-mark bottom-right">+</span>
+                <span class="corner-mark bottom-left">+</span>
+                <div class="feature-content">
+                    <h2>Challenge <span class="gradient-text">Yourself</span> Daily</h2>
+                    
+                    <p>Set personalized goals, join community challenges, and watch your progress unfold. Every step forward is a victory worth celebrating.</p>
+                    
+                    <ul class="feature-list">
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Achievement badges and streak tracking</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Community leaderboards and social motivation</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Custom goal setting for any fitness level</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Weekly challenges to keep you motivated</span>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Card 3: Rise Together -->
+            <article class="feature-card feature-card-left">
+                <span class="corner-mark top-right">+</span>
+                <span class="corner-mark top-left">+</span>
+                <span class="corner-mark bottom-right">+</span>
+                <span class="corner-mark bottom-left">+</span>
+                <div class="feature-content">
+                    <h2>Rise <span class="gradient-text">Together</span></h2>
+                    
+                    <p>Share achievements, compete in challenges, and discover what you're truly capable of.</p>
+                    
+                    <ul class="feature-list">
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Connect with friends and fitness communities</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Group challenges and team competitions</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Personalized health tips and motivation</span>
+                        </li>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Social feed to share your wins and progress</span>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sequorr. Imagination Beyond Limits.</p>
+    </footer>
+
+    <script src="js/shared/menu.js"></script>
+    <script src="js/shared/theme.js"></script>
+    <script src="js/app.js"></script>
+    </body>
+</html>

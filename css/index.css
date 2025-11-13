@@ -1,0 +1,339 @@
+/* Index Page Styles */
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 5% 80px;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 80px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -2px;
+}
+
+.hero p {
+    font-size: 24px;
+    color: var(--gray);
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+/* Modules */
+.module {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 5%;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.module.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.module-visual {
+    background: var(--bg) !important;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 60px;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.module-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.module:nth-child(even) .module-content {
+    direction: rtl;
+}
+
+.module:nth-child(even) .module-text {
+    direction: ltr;
+}
+
+.module-text h2 {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+    color: var(--fg);
+}
+
+.module-text p {
+    font-size: 20px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.module-visual:hover {
+    border-color: var(--gray);
+}
+
+.visual-progress {
+    background: rgba(10, 10, 10, 0.95);
+}
+
+[data-theme="dark"] .visual-progress {
+    background: rgba(10, 10, 10, 0.1);
+}
+
+[data-theme="light"] .visual-progress {
+    background: rgba(240, 240, 240, 1);
+}
+
+[data-theme="light"] .ripple-circle {
+    background: rgba(42, 255, 0, 0.03);
+    border: 2px solid rgba(42, 255, 0, 0.15);
+}
+
+/* Globe Section */
+.globe-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+#cobe {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Beam Container */
+.beam-container {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+}
+
+.beam-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.beam-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.beam-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.beam-circle:hover {
+    border-color: var(--fg);
+}
+
+.beam-circle svg {
+    width: 30px;
+    height: 30px;
+    color: var(--fg);
+}
+
+.beam-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Footer CTA */
+.footer-cta {
+    display: block;
+    width: 100%;
+    padding: 120px 5%;
+    text-align: center;
+    background: radial-gradient(ellipse at center, rgba(1, 111, 50, 0.2) 0%, transparent 100%);
+    clear: both;
+}
+
+.footer-cta h2 {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+}
+
+.footer-cta p {
+    font-size: 24px;
+    color: var(--gray);
+    margin-bottom: 48px;
+}
+
+footer {
+    display: block;
+    width: 100%;
+    padding: 40px 5%;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--gray);
+    font-size: 14px;
+    clear: both;
+}
+
+
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 48px;
+    }
+    
+    .hero p {
+        font-size: 18px;
+    }
+    
+    .module {
+        padding: 60px 5%;
+    }
+    
+    .module-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .module:nth-child(even) .module-content {
+        direction: ltr;
+    }
+    
+    .module-text {
+        text-align: center;
+    }
+    
+    .module-text h2 {
+        font-size: 36px;
+    }
+    
+    .module-text p {
+        font-size: 16px;
+        padding: 0 10px;
+    }
+    
+    .module-visual {
+        padding: 40px 20px;
+        min-height: 350px;
+    }
+
+    /* Hide 4th and 5th beam circles on mobile */
+    .beam-column .beam-circle:nth-child(4),
+    .beam-column .beam-circle:nth-child(5) {
+        display: none;
+    }
+    
+    /* MOBILE BEAM LAYOUT - NO TRANSFORM! */
+    .beam-container {
+        /* Remove transform scale */
+        padding: 10px;
+        max-width: 280px; /* Constrain width instead */
+    }
+    
+    .beam-content {
+        gap: 15px;
+    }
+    
+    /* Left column stays vertical */
+    .beam-column#leftColumn {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* Smaller circles on mobile */
+    .beam-circle {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .beam-circle svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    /* Center circle */
+    .beam-circle[data-beam="center"] {
+        width: 55px !important;
+        height: 55px !important;
+    }
+    
+    .beam-circle[data-beam="center"] svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+    
+    .footer-cta h2 {
+        font-size: 40px;
+    }
+    
+    .footer-cta p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .beam-container {
+        max-width: 240px;
+        padding: 8px;
+    }
+    
+    .beam-content {
+        gap: 12px;
+    }
+    
+    .beam-column#leftColumn {
+        gap: 8px;
+    }
+    
+    .beam-circle {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .beam-circle[data-beam="center"] {
+        width: 48px !important;
+        height: 48px !important;
+    }
+}

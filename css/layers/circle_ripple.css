@@ -1,0 +1,67 @@
+.ripple-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.ripple-circle {
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(42, 255, 0, 0.08);
+    border: 2px solid rgba(42, 255, 0, 0.3);
+    animation: ripple-expand 3s ease-out infinite;
+    pointer-events: none;
+}
+
+/* Individual sizes */
+.ripple-circle:nth-child(1) { 
+    width: 150px; 
+    height: 150px; 
+    animation-delay: 0.01s; 
+}
+.ripple-circle:nth-child(2) { 
+    width: 200px; 
+    height: 200px; 
+    animation-delay: 0.02s; 
+}
+.ripple-circle:nth-child(3) { 
+    width: 250px; 
+    height: 250px; 
+    animation-delay: 0.04s; 
+}
+.ripple-circle:nth-child(4) { 
+    width: 300px; 
+    height: 300px; 
+    animation-delay: 0.06s; 
+}
+.ripple-circle:nth-child(5) { 
+    width: 350px; 
+    height: 350px; 
+    animation-delay: 0.08s; 
+}
+.ripple-circle:nth-child(6) { 
+    width: 400px; 
+    height: 400px; 
+    animation-delay: 0.1s; 
+}
+
+@keyframes ripple-expand {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}

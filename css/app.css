@@ -1,0 +1,211 @@
+/* App Page Styles */
+
+/* Hero Section */
+.app-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 5% 80px;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.hero-text h1 {
+    font-size: 72px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -2px;
+}
+
+.hero-text p {
+    font-size: 20px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+/* Feature Cards with Dashed Border + Corner Marks */
+.featured-cards-section {
+    padding: 120px 5%;
+}
+
+.feature-cards-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    gap: 80px;
+}
+
+.feature-card {
+    position: relative;
+    max-width: 900px;
+    padding: 64px;
+    border-radius: 0px;
+    background: rgba(1, 111, 50, 0.05);
+    border: 2px dashed rgba(1, 111, 50, 0.3);
+}
+
+/* hover glow */
+.feature-card:hover {
+    background: rgba(1, 111, 50, 0.08);
+    border-color: rgba(42, 255, 0, 0.5);
+    box-shadow: 0 0 20px rgba(42, 255, 0, 0.2), 0 0 40px rgba(42, 255, 0, 0.1) inset 0 0 60px rgba(42, 255, 0, 0.05);
+    transform: translateY(-4px);
+}
+
+.feature-card-left {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.feature-card-right {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+/* Corner marks */
+.corner-mark {
+    position: absolute;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    z-index: 3;
+}
+
+.corner-mark.top-left {
+    top: -18px;
+    left: -10px;
+}
+
+.corner-mark.top-right {
+    top: -18px;
+    right: -10.5px;
+}
+
+.corner-mark.bottom-left {
+    bottom: -14px;
+    left: -10px;
+}
+
+.corner-mark.bottom-right {
+    bottom: -14px;
+    right: -10.5px;
+}
+
+.feature-content {
+    position: relative;
+    z-index: 2;
+}
+
+.feature-card h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--fg);
+    transition: color 0.3s ease;
+}
+
+.feature-card:hover h2 {
+    color: var(--fg);
+}
+
+.feature-card p {
+    font-size: 18px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.checkmark {
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.feature-list li span:last-child {
+    color: var(--gray);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .app-hero {
+        padding: 100px 5% 60px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-text {
+        order: 1;
+    }
+
+    .phone-mockup {
+        order: 2;
+        margin: 0 auto;
+    }
+
+    .hero-text h1 {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .hero-text p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .hero-text .cta-button-interactive {
+        margin: 24px auto;
+        display: block;
+        text-align: center;
+    }
+    
+    .feature-card {
+        padding: 40px 24px;
+        margin: 0 !important;
+    }
+    
+    .feature-card h2 {
+        font-size: 32px;
+    }
+
+    .feature-card p {
+        font-size: 16px;
+    }
+
+    .cta-button-interactive {
+        display: inline-block;
+        width: auto;
+        padding: 16px 32px;
+        font-size: 15px;
+        margin: 16px auto;
+    }
+}

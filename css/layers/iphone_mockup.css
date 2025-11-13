@@ -1,0 +1,349 @@
+        /* Arrow icon */
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .phone-mockup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            perspective: 1000px;
+        }
+
+        .iphone {
+            width: 365px;
+            height: 700px;
+            background: #1C1C1E;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+            margin: 0 auto;
+            transform: rotateY(-5deg);
+            transition: transform 0.6s ease;
+        }
+
+        .phone-mockup:hover .iphone {
+            transform: rotateY(0deg);
+        }
+
+        .iphone-screen {
+            width: 100%;
+            height: 100%;
+            background: #F5F5F5;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 30px;
+            background: #1C1C1E;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .app-content {
+            height: 100%;
+            overflow-y: auto;
+            background: #F5F5F5;
+            padding: 40px 20px 100px;
+        }
+
+        .app-content::-webkit-scrollbar {
+            width: 0;
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 55px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #A8E6A1 0%, #7BC67E 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #2D5F2E;
+        }
+
+        .greeting {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .greeting-text {
+            font-size: 14px;
+            color: #8B8D91;
+        }
+
+        .username {
+            font-size: 12px;
+            font-weight: 700;
+            color: #1C1C1E;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .icon-badge {
+            width: 55px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            position: relative;
+            margin-right: 4px;
+        }
+
+        .streak-badge {
+            background: #ffffff;
+            border: 2px solid #F0F0F0;
+            color: #666666;
+        }
+
+        .notification-badge {
+            background: #FFFFFF;
+            border: 2px solid #F0F0F0;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: #FF3B30;
+            border-radius: 50%;
+        }
+
+        .date-banner {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            padding: 16px 20px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .date-banner-icon {
+            font-size: 24px;
+        }
+
+        .date-text {
+            font-size: 15px;
+            color: #2D5F2E;
+            font-weight: 600;
+        }
+
+        .date-subtext {
+            font-size: 15px;
+            color: #4A7C4E;
+            font-style: italic;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1C1C1E;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: #52C41A;
+            font-weight: 600;
+            float: right;
+        }
+
+        .progress-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .progress-card {
+            padding: 24px 16px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progress-card.calories {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+        }
+
+        .progress-card.distance {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+        }
+
+        .progress-card.duration {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+
+        .card-icon {
+            font-size: 32px;
+        }
+
+        .card-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1C1C1E;
+        }
+
+        .card-label {
+            font-size: 14px;
+            color: #8B8D91;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .action-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: #FFFFFF;
+            padding: 20px 12px;
+            border-radius: 16px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-4px);
+        }
+
+        .action-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .action-icon.water {
+            background: #E3F2FD;
+        }
+
+        .action-icon.meal {
+            background: #FFF3E0;
+        }
+
+        .action-icon.sleep {
+            background: #F3E5F5;
+        }
+
+        .action-icon.dashboard {
+            background: #E8F5E9;
+        }
+
+        .action-label {
+            font-size: 12px;
+            color: #1C1C1E;
+            font-weight: 600;
+        }
+
+        .goals-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .view-all {
+            font-size: 14px;
+            color: #52C41A;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .phone-mockup {
+                padding: 20px 0;
+            }
+
+            .iphone {
+                width: 280px;
+                height: 577px;
+                border-radius: 38px;
+                padding: 10px;
+            }
+
+            .iphone-screen {
+                border-radius: 32px;
+            }
+
+            .notch {
+                width: 120px;
+                height: 25px;
+            }
+
+            .app-content {
+                padding: 45px 16px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .iphone {
+                width: 260px;
+                height: 536px;
+                border-radius: 35px;
+                padding: 8px;
+            }
+
+            .notch {
+                width: 100px;
+                height: 22px;
+            }
+
+            .app-content {
+                padding: 40px 12px 12px;
+            }
+        }
+
+        @media (max-width: 374px) {
+            .iphone {
+                width: 240px;
+                height: 495px;
+            }
+        }
