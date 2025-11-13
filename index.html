@@ -1,619 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sequorr - Imagination Beyond Limits</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: #0A0A0A;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
+    <link rel="stylesheet" href="css/index.css">
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: background 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
+    <link rel="stylesheet" href="css/shared/base.css">
+    <link rel="stylesheet" href="css/shared/components.css">
+    <link rel="stylesheet" href="css/shared/variables.css">
+    <link rel="stylesheet" href="css/shared/responsive.css">
 
-        nav.scrolled {
-            background: rgba(10, 10, 10, 0.8);
-            border-bottom: 1px solid rgba(0, 229, 255, 0.1);
-        }
+    <link rel="stylesheet" href="css/layers/circle_ripple.css">
+    <link rel="stylesheet" href="css/layers/progress_bar.css">
+    <link rel="stylesheet" href="css/layers/buttons.css">
 
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #2aff00;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 5%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 150, 50, 0.4) 0%, transparent 50%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
-        }
-
-        h1 {
-            font-size: 80px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #1a9b00 0%, #2aff00 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 24px;
-            color: #8d958e;
-            max-width: 600px;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-button {
-            padding: 18px 48px;
-            background: #2aff00;
-            color: #0A0A0A;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            background: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.3);
-        }
-
-        /* Interactive CTA Button with Arrow */
-        .cta-button-interactive {
-            position: relative;
-            width: auto;
-            min-width: 180px;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 50px;
-            border: 2px solid #ffffff #0A0A0A;
-            background: #ffffff;
-            padding: 16px 34px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 16px;
-            color: #0A0A0A;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button-interactive .button-text {
-            display: inline-block;
-            transform: translateX(4px);
-            transition: all 0.3s ease;
-        }
-
-        .cta-button-interactive:hover .button-text, .cta-button-interactive.button-active .button-text {
-            transform: translateX(48px);
-            opacity: 0;
-        }
-
-        .cta-button-interactive .button-hover-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            height: 100%;
-            width: 100%;
-            color: #0A0A0A;
-            transform: translateX(48px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button-interactive:hover .button-hover-content, .cta-button-interactive.button-active .button-hover-content {
-            transform: translateX(-4px);
-            opacity: 1;
-        }
-
-        .cta-button-interactive .button-bg-expand {
-            position: absolute;
-            left: 20%;
-            top: 40%;
-            height: 8px;
-            width: 8px;
-            border-radius: 8px;
-            background: #2aff00;
-            transition: all 0.3s ease;
-            transform: scale(1);
-            opacity: 0;
-            z-index: 0;
-        }
-        
-        .cta-button-interactive:hover .button-bg-expand, .cta-button-interactive.button-active .button-bg-expand {
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            transform: scale(1.8);
-            background: #2aff00;
-            opacity: 1;
-        }
-
-        /* Arrow icon */
-        .arrow-icon {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            stroke-width: 2;
-            fill: none;
-        }
-
-        /* Feature Modules */
-        .module {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 100px 5%;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .module.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .module-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .module:nth-child(even) .module-content {
-            direction: rtl;
-        }
-
-        .module:nth-child(even) .module-text {
-            direction: ltr;
-        }
-
-        .module-text h2 {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-        }
-
-        .module-text p {
-            font-size: 20px;
-            color: #8d958e;
-            line-height: 1.6;
-            margin-bottom: 32px;
-        }
-
-        .module-visual {
-            height: 500px;
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Visual Elements */
-        .visual-metrics {
-            background: linear-gradient(135deg, rgba(1, 111, 50, 0.0) 0%, rgba(1, 111, 50, 0.2) 100%);
-            border: 2px solid rgba(1, 111, 50, 0.2);
-        }
-
-        .metric-card {
-            background: rgba(1, 111, 50, 0.0);
-            padding: 32px;
-            border-radius: 16px;
-            border: 1px solid rgba(1, 111, 50, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .metric-number {
-            font-size: 64px;
-            font-weight: 700;
-            color: #2aff00;
-            margin-bottom: 8px;
-        }
-
-        .metric-label {
-            font-size: 18px;
-            color: #8d958e;
-        }
-
-        .visual-progress {
-            background: rgba(1, 111, 50, 0.0);
-            border: 2px solid rgba(1, 111, 50, 0.2);
-            padding: 60px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 12px;
-            background: rgba(1, 111, 50, 0.2);
-            border-radius: 100px;
-            overflow: hidden;
-            margin-bottom: 24px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #e5e5b1 0%, #38618c 100%);
-            border-radius: 100px;
-            animation: progress 3.2s ease-out forwards;
-        }
-
-        @keyframes progress {
-            from { width: 0; }
-        }
-
-        .visual-community {
-            background: radial-gradient(circle at center, rgba(1, 111, 50, 0.0) 0%, transparent 100%);
-            border: 2px solid rgba(1, 111, 50, 0.2);
-        }
-
-        .community-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 80px);
-            gap: 16px;
-        }
-
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1a9b00 0%, #2aff00 100%);
-            border: 3px solid #0A0A0A;
-        }
-
-        /* ===== ANIMATED BEAM ===== */
-        .beam-container {
-            position: relative;
-            display: flex;
-            width: 100%;
-            max-width: 500px;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: #0A0A0A;
-            padding: 40px;
-            box-shadow: 0 0 40px rgba(42, 255, 0, 0.1);
-        }
-
-        .beam-gradient-line {
-            position: absolute;
-            right: 20px;
-            top: 0;
-            height: 1px;
-            width: 50%;
-            background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.3) 10%, transparent);
-        }
-
-        .beam-content {
-            display: flex;
-            width: 100%;
-            max-width: 500px;
-            justify-content: space-between;
-            align-items: center;
-            gap: 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .beam-column {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 16px;
-        }
-
-        .beam-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(42, 255, 0, 0.1);
-            border: 2px solid rgba(42, 255, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .beam-circle:hover {
-            background: rgba(42, 255, 0, 0.2);
-            border-color: rgba(42, 255, 0, 0.6);
-            box-shadow: 0 0 20px rgba(42, 255, 0, 0.4);
-        }
-
-        .beam-circle svg {
-            width: 30px;
-            height: 30px;
-        }
-
-        /* Canvas for animated beams */
-        .beam-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Ripple Animation */
-        .module-visual.visual-progress {
-            position: relative;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .module-visual .ripple-container {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
-            mask-image: linear-gradient(to bottom, white, transparent);
-            -webkit-mask-image: linear-gradient(to bottom, white, transparent);
-        }
-
-        .ripple-container .ripple-circle {
-            position: absolute;
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: ripple-expand 3s ease-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes ripple-expand {
-            0% {
-                transform: translate(-50%, -50%) scale(0.95);
-                opacity: 0;
-            }
-            25% {
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1.4);
-                opacity: 0;
-            }
-        }
-
-        /* Stagger animation delays */
-        .ripple-circle:nth-child(1) { animation-delay: 0s; }
-        .ripple-circle:nth-child(2) { animation-delay: 0.15s; }
-        .ripple-circle:nth-child(3) { animation-delay: 0.3s; }
-        .ripple-circle:nth-child(4) { animation-delay: 0.45s; }
-        .ripple-circle:nth-child(5) { animation-delay: 0.6s; }
-        .ripple-circle:nth-child(6) { animation-delay: 0.75s; }
-        .ripple-circle:nth-child(7) { animation-delay: 0.9s; }
-        .ripple-circle:nth-child(8) { animation-delay: 1.05s; }
-
-
-
-        /* Stats Section */
-        .stats {
-            padding: 120px 5%;
-            background: linear-gradient(180deg, #0A0A0A 0%, rgba(1, 111, 50, 0.2) 100%);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 60px;
-            max-width: 1400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 72px;
-            font-weight: 700;
-            color: #2aff00;
-            margin-bottom: 12px;
-        }
-
-        .stat-item p {
-            font-size: 18px;
-            color: #8d958e;
-        }
-
-        /* Footer CTA */
-        .footer-cta {
-            padding: 120px 5%;
-            text-align: center;
-            background: radial-gradient(ellipse at center, rgba(1, 111, 50, 0.2) 0%, transparent 100%);
-        }
-
-        .footer-cta h2 {
-            font-size: 64px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-        }
-
-        .footer-cta p {
-            font-size: 24px;
-            color: #8d958e;
-            margin-bottom: 48px;
-        }
-
-        .cta-secondary {
-            padding: 18px 48px;
-            background: transparent;
-            color: #2aff00;
-            border: 2px solid #1a9b00;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin-left: 16px;
-        }
-
-        .cta-secondary:hover {
-            background: #1a9b00;
-            color: #0A0A0A;
-        }
-
-        footer {
-            padding: 40px 5%;
-            border-top: 1px solid rgba(1, 111, 50, 0.2);
-            text-align: center;
-            color: #8d958e;
-            font-size: 14px;
-        }
-
-                @media (max-width: 768px) {
-            h1 { font-size: 48px; }
-            .hero p { font-size: 18px; }
-            .module-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .module:nth-child(even) .module-content {
-                direction: ltr;
-            }
-            .module-text h2 { font-size: 36px; }
-            .nav-links { display: none; }
-            .footer-cta h2 { font-size: 40px;
-            }
-            .footer-cta p { 
-                font-size: 18px;
-            }
-            /* Adjust logo size on mobile */
-            .footer-cta .cta-button, .footer-cta .cta-secondary {
-                display: block;
-                width: 100%;
-                max-width: 300px;
-                margin: 12px auto;
-                text-align: center;
-            }
-            .footer-cta .cta-secondary {
-                margin-left: auto;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
-    <nav style= "background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px);">
+    <nav>
         <a href="index.html" class="logo">
-            <img src="logo/sequorr-logo_01.svg" alt="Sequorr" class="logo-img">
+            <!-- dark mode logo-->
+            <img src="logo/sequorr-logo_01.svg" alt="Sequorr" class="logo-img logo-dark">
+            <!-- light mode logo-->
+             <img src="logo/sequorr-logo_02.svg" alt="Sequorr" class="logo-img logo-light">
         </a>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <ul class="nav-links">
             <li><a href="app.html">App</a></li>
             <li><a href="community.html">Community</a></li>
             <li><a href="demo.html">Demo</a></li>
             <li><a href="waitlist.html">Join Waitlist</a></li>
+            <li>
+                <button data-theme-toggle class="theme-toggle-btn" aria-label="Toggle theme">
+                    <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </button>
+            </li>
         </ul>
     </nav>
 
@@ -633,7 +66,7 @@
                 </a>
     </section>
 
-    <section class="module" id="app-features">
+    <section class="module" id="app">
     <div class="module-content">
         <div class="module-text">
             <h2>Track Every <span style="color: #2aff00;">Detail</span></h2>
@@ -641,61 +74,54 @@
             <a href="app.html" class="cta-secondary">Explore Metrics</a>
         </div>
         <div class="module-visual visual-metrics">
-            <!-- Globe replaces the 98% -->
-                <div class="globe-section">
-                    <canvas id="cobe" width="800" height="800" style="width: 400px; height: 400px;"></canvas>
-                </div>
+            <div class="globe-section">
+                <canvas id="cobe" width="800" height="800" style="width: 400px; height: 400px;"></canvas>
+            </div>
         </div>
     </section>
 
-    <section class="module" id="demo-features">
-    <div class="module-content">
-        <div class="module-text">
-            <h2>Watch Your <span style="color: #2aff00;">Growth</span></h2>
-            <p>Visualize your progress with clarity. Every workout, every milestone, every breakthrough mapped in real-time.</p>
-            <a href="waitlist.html" class="cta-secondary">See Progress</a>
-        </div>
-        <div class="module-visual visual-progress" style="position: relative; min-height: 500px; display: flex; align-items: center; justify-content: center; background: #0A0A0A;">
-            <div class="ripple-container">
-                <div class="ripple-container" style="background: rgba(255, 255, 255, 0.05);">
-                <div class="ripple-circle" style="width: 210px; height: 210px; background: rgba(42, 255, 0, 0.5); border: 2px solid rgba(42, 255, 0, 0.8);"></div>
-                <div class="ripple-circle" style="width: 280px; height: 280px; background: rgba(42, 255, 0, 0.4); border: 2px solid rgba(42, 255, 0, 0.7);"></div>
-                <div class="ripple-circle" style="width: 350px; height: 350px; background: rgba(42, 255, 0, 0.3); border: 2px solid rgba(42, 255, 0, 0.6);"></div>
-                <div class="ripple-circle" style="width: 420px; height: 420px; background: rgba(42, 255, 0, 0.25); border: 2px solid rgba(42, 255, 0, 0.5);"></div>
-                <div class="ripple-circle" style="width: 490px; height: 490px; background: rgba(42, 255, 0, 0.2); border: 2px solid rgba(42, 255, 0, 0.4);"></div>
-                <div class="ripple-circle" style="width: 560px; height: 560px; background: rgba(42, 255, 0, 0.15); border: 2px solid rgba(42, 255, 0, 0.3);"></div>
-                <div class="ripple-circle" style="width: 630px; height: 630px; background: rgba(42, 255, 0, 0.1); border: 2px solid rgba(42, 255, 0, 0.2);"></div>
-                <div class="ripple-circle" style="width: 700px; height: 700px; background: rgba(42, 255, 0, 0.05); border: 2px solid rgba(42, 255, 0, 0.15);"></div>
+    <section class="module" id="demo">
+        <div class="module-content">
+            <div class="module-text">
+                <h2>Watch Your <span style="color: #2aff00;">Growth</span></h2>
+                <p>Visualize your progress with clarity. Every workout, every milestone, every breakthrough mapped in real-time.</p>
+                <a href="waitlist.html" class="cta-secondary">See Progress</a>
             </div>
-            
-            <!-- Progress bars (on top of grid) -->
-            <div style="width: 80%; position: relative; z-index: 2;">
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 87%; animation-delay: 0.3s;"></div>
+            <div class="module-visual visual-progress" style="position: relative; min-height: 500px; display: flex; align-items: center; justify-content: center; background: #0A0A0A;">
+                <div class="ripple-container">
+                    <div class="ripple-container"></div>
+                    <div class="ripple-circle" style="width: 210px; height: 210px;"></div>
+                    <div class="ripple-circle" style="width: 210px; height: 210px;"></div>
+                    <div class="ripple-circle" style="width: 280px; height: 280px;"></div>
+                    <div class="ripple-circle" style="width: 350px; height: 350px;"></div>
+                    <div class="ripple-circle" style="width: 420px; height: 420px;"></div>
+                    <div class="ripple-circle" style="width: 490px; height: 490px;"></div>
+                    <div class="ripple-circle" style="width: 560px; height: 560px;"></div>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 72%; animation-delay: 0.2s;"></div>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 94%; animation-delay: 0.3s;"></div>
+                <div class="progress-wrapper">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 87%;"></div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 72%;"></div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 94%;"></div>
                 </div>
             </div>
         </div>
     </div>
     </section>
-
-    <!-- Animated Beam Section -->
-    <section class="module">
+    
+    <section class="module" id="community">
         <div class="module-content">
             <div class="module-text">
             <h2>Rise <span style="color: #2aff00;">Together</span></h2>
                 <p>Join athletes who push boundaries. Share achievements, challenge friends, and discover what you're truly capable of.</p>
                 <a href="community.html" class="cta-secondary">Join Community</a>
-
             </div>
             <div class="module-visual" style="display: flex; justify-content: center; align-items: center;">
                 <div class="beam-container" id="beamContainer">
-                    <div class="beam-gradient-line"></div>
                     <canvas class="beam-canvas" id="beamCanvas"></canvas>
                     <div class="beam-content">
                         <div class="beam-column" id="leftColumn">
@@ -750,7 +176,7 @@
                 </div>
             </div>
         </div>
-        </section>
+    </section>
 
     <section class="footer-cta" id="start">
         <h2>Ready to <span class="gradient-text">Rise?</span></h2>
@@ -763,201 +189,10 @@
         <p>&copy; 2025 Sequorr. Imagination Beyond Limits.</p>
     </footer>
 
-    <script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Intersection Observer for module animations
-        const modules = document.querySelectorAll('.module');
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        modules.forEach(module => observer.observe(module));
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
-
-    <script type="module">
-        import createGlobe from 'https://cdn.skypack.dev/cobe'
-        
-        let phi = 0
-        let canvas = document.getElementById("cobe")
-        
-        const globe = createGlobe(canvas, {
-            devicePixelRatio: 2,
-            width: 800,
-            height: 800,
-            phi: 0,
-            theta: 0.3,
-            dark: 1,
-            diffuse: 1.2,
-            mapSamples: 16000,
-            mapBrightness: 6,
-            baseColor: [0.3, 0.3, 0.3],
-            markerColor: [0.1, 0.8, 1],
-            glowColor: [0.16, 1, 0.5],
-            markers: [
-                { location: [37.7749, -122.4194], size: 0.05 }, // San Francisco
-                { location: [28.62696, 77.21540], size: 0.05 }, // New Delhi, India
-                { location: [40.7128, -74.0060], size: 0.05 }, // New York
-                { location: [51.5074, -0.1278], size: 0.05 }, // London
-                { location: [35.6895, 139.6917], size: 0.05 } // Tokyo
-            ],
-            onRender: (state) => {
-                phi += 0.002
-                state.phi = phi
-            }
-        })
-    </script>
-
-    <script>
-    // Animated Beam Effect
-    (function() {
-        const beamCanvas = document.getElementById('beamCanvas');
-        const beamContainer = document.getElementById('beamContainer');
-
-        if (!beamCanvas || !beamContainer) {
-            console.log('Beam elements not found');
-            return;
-        }
-
-        const ctx = beamCanvas.getContext('2d');
-        
-        function resizeCanvas() {
-            beamCanvas.width = beamContainer.offsetWidth;
-            beamCanvas.height = beamContainer.offsetHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        
-        function getCirclePositions() {
-            const sources = document.querySelectorAll('[data-beam="source"]');
-            const center = document.querySelector('[data-beam="center"]');
-            const target = document.querySelector('[data-beam="target"]');
-            
-            const containerRect = beamContainer.getBoundingClientRect();
-            const positions = { sources: [], center: null, target: null };
-            
-            sources.forEach(source => {
-                const rect = source.getBoundingClientRect();
-                positions.sources.push({
-                    x: rect.left + rect.width / 2 - containerRect.left,
-                    y: rect.top + rect.height / 2 - containerRect.top
-                });
-            });
-            
-            if (center) {
-                const rect = center.getBoundingClientRect();
-                positions.center = {
-                    x: rect.left + rect.width / 2 - containerRect.left,
-                    y: rect.top + rect.height / 2 - containerRect.top
-                };
-            }
-            
-            if (target) {
-                const rect = target.getBoundingClientRect();
-                positions.target = {
-                    x: rect.left + rect.width / 2 - containerRect.left,
-                    y: rect.top + rect.height / 2 - containerRect.top
-                };
-            }
-            
-            return positions;
-        }
-        
-        let beams = [];
-        const positions = getCirclePositions();
-        
-        positions.sources.forEach((source, i) => {
-            beams.push({
-                from: source,
-                to: positions.center,
-                progress: i * 0.2,
-                speed: 0.008,
-                delay: i * 0.2
-            });
-        });
-        
-        beams.push({
-            from: positions.center,
-            to: positions.target,
-            progress: 0,
-            speed: 0.008,
-            delay: 1
-        });
-        
-        function drawBeam(from, to, progress) {
-            const x = from.x + (to.x - from.x) * progress;
-            const y = from.y + (to.y - from.y) * progress;
-            
-            const gradient = ctx.createLinearGradient(from.x, from.y, x, y);
-            gradient.addColorStop(0, 'rgba(42, 255, 0, 0)');
-            gradient.addColorStop(0.5, 'rgba(42, 255, 0, 0.6)');
-            gradient.addColorStop(1, 'rgba(42, 255, 0, 0)');
-            
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(from.x, from.y);
-            ctx.lineTo(x, y);
-            ctx.stroke();
-            
-            const glowGradient = ctx.createRadialGradient(x, y, 0, x, y, 10);
-            glowGradient.addColorStop(0, 'rgba(42, 255, 0, 0.8)');
-            glowGradient.addColorStop(1, 'rgba(42, 255, 0, 0)');
-            
-            ctx.fillStyle = glowGradient;
-            ctx.beginPath();
-            ctx.arc(x, y, 10, 0, Math.PI * 2);
-            ctx.fill();
-        }
-        
-        function animate() {
-            ctx.clearRect(0, 0, beamCanvas.width, beamCanvas.height);
-            
-            beams.forEach(beam => {
-                if (beam.progress >= beam.delay) {
-                    const adjustedProgress = Math.min((beam.progress - beam.delay) / (1 - beam.delay), 1);
-                    drawBeam(beam.from, beam.to, adjustedProgress);
-                }
-                
-                beam.progress += beam.speed;
-                if (beam.progress > 1 + beam.delay) {
-                    beam.progress = 0;
-                }
-            });
-            
-            requestAnimationFrame(animate);
-        }
-        
-        animate();
-    })();
-    </script>
+    <script src="js/shared/menu.js"></script>
+    <script src="js/shared/theme.js"></script>
+    <script src="js/layers/cobe.js"></script>
+    <script src="js/layers/module-beam.js"></script> 
+    <script src="js/index.js"></script> 
 </body>
 </html>

@@ -1,341 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEQUORR - Demo</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: #0A0A0A;
-            color: #FFFFFF;
-            overflow-x: hidden;
-        }
+    <link rel="stylesheet" href="css/demo.css">
 
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(1, 111, 50, 0.2);
-        }
+    <link rel="stylesheet" href="css/shared/base.css">
+    <link rel="stylesheet" href="css/shared/footer.css">
+    <link rel="stylesheet" href="css/shared/responsive.css">
+    <link rel="stylesheet" href="css/shared/variables.css">
 
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        .logo-img {
-            height: 40px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #FFFFFF;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #2aff00;
-        }
-
-        .demo-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 120px 5% 80px;
-        }
-
-        .content {
-            max-width: 1200px;
-            width: 100%;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 72px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -2px;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg,#1a9b00 0%,#2aff00 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .description {
-            font-size: 20px;
-            color: #8d958e;
-            margin-bottom: 64px;
-            line-height: 1.6;
-        }
-
-        .video-container {
-            width: 100%;
-            margin-bottom: 80px;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            background: linear-gradient(135deg, rgba(1, 111, 50, 0.2) 0%, rgba(1, 111, 50, 0.4) 100%);
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(1, 111, 50, 0.2) 0%, rgba(1, 111, 50, 0.4) 100%);
-            border: 2px solid rgba(1, 111, 50, 0.3);
-        }
-
-        /* ===== VIDEO TEXT MASK ===== */
-        .video-text-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .video-text-mask {
-            position: absolute;
-            inset: 0;
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-        }
-
-        .placeholder-icon {
-            font-size: 80px;
-            margin-bottom: 24px;
-        }
-
-        .placeholder-text {
-            font-size: 24px;
-            font-weight: 600;
-            color: #FFFFFF;
-        }
-
-        .cta-section {
-            padding: 120px 5%;
-            text-align: center;
-            background: linear-gradient(180deg, #0A0A0A 0%, rgba(1, 111, 50, 0.2) 100%);
-        }
-
-        .cta-section h2 {
-            font-size: 64px;
-            font-weight: 700;
-            margin-top: 40px;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-        }
-
-        .cta-button {
-            padding: 20px 48px;
-            background: #2aff00;
-            color: #0A0A0A;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin: 0 8px;
-        }
-
-        .cta-button:hover {
-            background: #FFFFFF;
-            transform: translateY(-2px);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: #2aff00;
-            border: 2px solid #2aff00;
-        }
-
-        .cta-secondary:hover {
-            background: #1a9b00;
-            color: #0A0A0A;
-        }
-
-        footer {
-            padding: 40px 5%;
-            margin-top: 24px;
-            margin-bottom: 24px;
-            border-top: 1px solid rgba(1, 111, 50, 0.2);
-            text-align: center;
-            color: #8d958e;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
-            }
-            .cta-section h2 {
-                font-size: 32px;
-            }
-            .nav-links {
-                display: none;
-            }
-        }
-    </style>
     </head>
     <body>
         <nav>
-            <a href="/" class="logo">
-                <img src="logo/sequorr-logo_01.svg" alt="Sequorr" class="logo-img">
+            <a href="demo.html" class="logo">
+                <!-- dark mode logo-->
+                <img src="logo/sequorr-logo_01.svg" alt="Sequorr" class="logo-img logo-dark">
+                <!-- light mode logo-->
+                <img src="logo/sequorr-logo_02.svg" alt="Sequorr" class="logo-img logo-light">
             </a>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <ul class="nav-links">
                 <li><a href="/app.html">App</a></li>
                 <li><a href="/community.html">Community</a></li>
                 <li><a href="/waitlist.html">Join Waitlist</a></li>
+                <li>
+                    <button data-theme-toggle class="theme-toggle-btn" aria-label="Toggle theme">
+                        <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                            <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </button>
+                </li>
             </ul>
         </nav>
+
         <div class="demo-container">
             <div class="content">
-                <section class="module">
-                    <div class="module-visual" style="display: flex; justify-content: center; align-items: center; min-height: 500px; background: #111;">
-                            <div class="video-text-container" id="videoTextContainer" style="width: 800px; height: 450px;">
-                                <div class="video-text-mask" id="videoTextMask" style="width: 100%; height: 100%;">
-                                    <video autoplay muted loop playsinline preload="auto" style="width: 100%; height: 100%; object-fit: cover;">
-                                        <source src="/videos/demo.mp4" type="video/mp4">
-                                    </video>
-                                </div>
-                                <span class="sr-only">SEQUORR</span>
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <div class="video-text-container">
+                            <div class="video-text-mask" id="videoMask">
+                                <video autoplay loop muted playsinLine>
+                                    <source src="videos/demo.mp4" type="video/mp4">
+                                </video>
                             </div>
+                            <span class="sr-only">SEQUORR</span>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
-            <footer> 
-                <p>© 2025 Sequorr. Imagination Beyond Limits.</p>
-            </footer>
         </div>
-        <script>
-        // Video Text Mask Effect
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, searching for elements');
+        
+        <footer> 
+            <p>© 2025 Sequorr. Imagination Beyond Limits.</p>
+        </footer>
 
-            const container = document.getElementById('videoTextContainer');
-            const maskDiv = document.getElementById('videoTextMask');
-
-            console.log('Container found:', container);
-            console.log('Mask div found:', maskDiv);
-                    
-            if (!container || !maskDiv) {
-                console.error('Elements not found! Exiting.');
-                return;
-            }
-
-            console.log('Starting mask creation...');
-                    
-            // Configuration
-            const config = {
-                text: 'SEQUORR',
-                fontSize: 12, // in vw units
-                fontWeight: 'bold',
-                fontFamily: 'sans-serif'
-            };
-                    
-            function createSvgMask() {
-                const svg = `
-                    <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>
-                        <text 
-                            x='50%' 
-                            y='50%' 
-                            font-size='${config.fontSize}vw' 
-                            font-weight='${config.fontWeight}'
-                            text-anchor='middle' 
-                            dominant-baseline='middle' 
-                            font-family='${config.fontFamily}'>
-                            ${config.text}
-                        </text>
-                    </svg>
-                `;
-                        
-                const dataUrl = `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
-                        
-                maskDiv.style.maskImage = dataUrl;
-                maskDiv.style.webkitMaskImage = dataUrl;
-                maskDiv.style.maskSize = 'contain';
-                maskDiv.style.webkitMaskSize = 'contain';
-                maskDiv.style.maskRepeat = 'no-repeat';
-                maskDiv.style.webkitMaskRepeat = 'no-repeat';
-                maskDiv.style.maskPosition = 'center';
-                maskDiv.style.webkitMaskPosition = 'center';
-
-                console.log('SVG mask applied:', dataUrl);
-            }
-                    
-            // Create mask on load
-            createSvgMask();
-                    
-            // Update on window resize
-            window.addEventListener('resize', createSvgMask);
-        });
-        </script>
+        <script src="js/demo.js"></script>
+        <script src="js/shared/theme.js"></script>
+        <script src="js/shared/menu.js"></script>
     </body>
 </html>

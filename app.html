@@ -4,1102 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEQUORR - The App</title>
-    <!-- Tailwind CSS CDN --> 
-    <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    animation: {
-                        'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
-                        },
-                        keyframes: {
-                            'border-beam': {
-                                '100%': {
-                                    'offset-distance': '100%',
-                                    },
-                                },
-                            },
-                        }
-                    }
-                }
-        </script>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        
-        <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* Dark Mode (Default) */
-        :root,
-        [data-theme="dark"] {
-            --bg: #0a0a0a;
-            --fg: #ffffff;
-            --grey: #666666;
-            --grey-light: #999999;
-            --border: #333333;
-            --accent: #2aff00;
-        }
-
-        /* Light Mode */
-        [data-theme="light"] {
-            --bg: #ffffff;
-            --fg: #0a0a0a;
-            --grey: #b3b3b3;
-            --grey-light: #d4d4d4;
-            --border: #e5e5e5;
-            --accent: #2aff00;
-        }
-
-        /* Base */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg);
-            color: var(--fg);
-            overflow-x: hidden;
-            transition: background 0.2s ease, color 0.2s ease;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            color: var(--fg);
-        }
-
-        p {
-            color: var(--gray);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: var(--bg);
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-            transition: background 0.2s ease;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
-        }
-
-        [data-theme="light"] .logo-img {
-            filter: invert(1);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            align-items: center;
-        }
-
-        .nav-links li {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--fg);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Theme Toggle */
-        .theme-toggle-btn {
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-            color: var(--fg);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .theme-toggle-btn:hover {
-            border-color: var(--bg);
-            transform: rotate(180deg);
-        }
-
-        .theme-icon {
-            pointer-events: none;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Hero Section */
-        .app-hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            align-items: center;
-            padding: 160 5% 100px;
-            position: relative;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .hero-text h1 {
-            font-size: 64px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
-            line-height: 1.1;
-        }
-
-        .gradient-text {
-            color: var(--accent);
-        }
-
-        .hero-text p {
-            font-size: 20px;
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 32px;
-        }
-
-        /* buttons */
-        .cta-button {
-            padding: 18px 48px;
-            background: var(--fg);
-            color: var(--bg);
-            border: 1px solid var(--fg);
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: var(--bg);
-        }
-
-        /* Interactive CTA Button with Arrow */
-        .cta-button-interactive {
-            position: relative;
-            width: auto;
-            min-width: 180px;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 50px;
-            border: 2px solid var(--border);
-            background: var(--bg);
-            padding: 16px 34px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 16px;
-            color: var(--fg);
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button-interactive:hover {
-            border-color: var(--fg);
-        }
-
-        .cta-button-interactive .button-text {
-            display: inline-block;
-            transform: translateX(4px);
-            transition: all 0.3s ease;
-        }
-
-        .cta-button-interactive:hover .button-text {
-            transform: translateX(48px);
-            opacity: 0;
-        }
-
-        .cta-button-interactive .button-hover-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            height: 100%;
-            width: 100%;
-            color: var(--fg);
-            transform: translateX(48px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button-interactive:hover .button-hover-content {
-            transform: translateX(-4px);
-            opacity: 1;
-        }
-
-        .cta-button-interactive .button-bg-expand {
-            position: absolute;
-            left: 20%;
-            top: 40%;
-            height: 8px;
-            width: 8px;
-            border-radius: 8px;
-            background: var(--accent);
-            transition: all 0.3s ease;
-            transform: scale(1);
-            opacity: 0;
-            z-index: 0;
-        }
-        
-        .cta-button-interactive:hover .button-bg-expand {
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            transform: scale(1.8);
-            opacity: 1;
-        }
-
-        /* Arrow icon */
-        .arrow-icon {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            stroke-width: 2;
-            fill: none;
-        }
-
-        .phone-mockup {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            perspective: 1000px;
-        }
-
-        .iphone {
-            width: 365px;
-            height: 700px;
-            background: #1C1C1E;
-            border-radius: 40px;
-            padding: 12px;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
-            position: relative;
-            margin: 0 auto;
-            transform: rotateY(-5deg);
-            transition: transform 0.6s ease;
-        }
-
-        .phone-mockup:hover .iphone {
-            transform: rotateY(0deg);
-        }
-
-        .iphone-screen {
-            width: 100%;
-            height: 100%;
-            background: #F5F5F5;
-            border-radius: 32px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 180px;
-            height: 30px;
-            background: #1C1C1E;
-            border-radius: 0 0 20px 20px;
-            z-index: 10;
-        }
-
-        .app-content {
-            height: 100%;
-            overflow-y: auto;
-            background: #F5F5F5;
-            padding: 40px 20px 100px;
-        }
-
-        .app-content::-webkit-scrollbar {
-            width: 0;
-        }
-
-        .app-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .avatar {
-            width: 55px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #A8E6A1 0%, #7BC67E 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: 700;
-            color: #2D5F2E;
-        }
-
-        .greeting {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .greeting-text {
-            font-size: 14px;
-            color: #8B8D91;
-        }
-
-        .username {
-            font-size: 12px;
-            font-weight: 700;
-            color: #1C1C1E;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .icon-badge {
-            width: 55px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            position: relative;
-            margin-right: 4px;
-        }
-
-        .streak-badge {
-            background: #ffffff;
-            border: 2px solid #F0F0F0;
-            color: #666666;
-        }
-
-        .notification-badge {
-            background: #FFFFFF;
-            border: 2px solid #F0F0F0;
-        }
-
-        .notification-dot {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 8px;
-            height: 8px;
-            background: #FF3B30;
-            border-radius: 50%;
-        }
-
-        .date-banner {
-            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
-            padding: 16px 20px;
-            border-radius: 16px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .date-banner-icon {
-            font-size: 24px;
-        }
-
-        .date-text {
-            font-size: 15px;
-            color: #2D5F2E;
-            font-weight: 600;
-        }
-
-        .date-subtext {
-            font-size: 15px;
-            color: #4A7C4E;
-            font-style: italic;
-        }
-
-        .section-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1C1C1E;
-            margin-bottom: 16px;
-        }
-
-        .section-subtitle {
-            font-size: 16px;
-            color: #52C41A;
-            font-weight: 600;
-            float: right;
-        }
-
-        .progress-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 32px;
-        }
-
-        .progress-card {
-            padding: 24px 16px;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .progress-card.calories {
-            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
-        }
-
-        .progress-card.distance {
-            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
-        }
-
-        .progress-card.duration {
-            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-        }
-
-        .card-icon {
-            font-size: 32px;
-        }
-
-        .card-value {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1C1C1E;
-        }
-
-        .card-label {
-            font-size: 14px;
-            color: #8B8D91;
-        }
-
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-bottom: 32px;
-        }
-
-        .action-button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            background: #FFFFFF;
-            padding: 20px 12px;
-            border-radius: 16px;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .action-button:hover {
-            transform: translateY(-4px);
-        }
-
-        .action-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .action-icon.water {
-            background: #E3F2FD;
-        }
-
-        .action-icon.meal {
-            background: #FFF3E0;
-        }
-
-        .action-icon.sleep {
-            background: #F3E5F5;
-        }
-
-        .action-icon.dashboard {
-            background: #E8F5E9;
-        }
-
-        .action-label {
-            font-size: 12px;
-            color: #1C1C1E;
-            font-weight: 600;
-        }
-
-        .goals-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .view-all {
-            font-size: 14px;
-            color: #52C41A;
-            font-weight: 600;
-        }
-
-        .bottom-nav {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #FFFFFF;
-            padding: 12px 20px 24px;
-            display: flex;
-            justify-content: space-around;
-            border-top: 1px solid #F0F0F0;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            color: #8B8D91;
-            font-size: 11px;
-        }
-
-        .nav-item.active {
-            color: #52C41A;
-        }
-
-        .nav-item-icon {
-            font-size: 24px;
-        }
-
-        .feature-section {
-            padding: 120px 0;
-            background: #0A0A0A;
-        }
-
-        .feature-container {
-            max-width: 100%;
-            padding: 0 10%; /* 10% padding on each side = 20% total, or adjust to 20% for 40% total */
-            margin: 0 auto;
-        }
-
-        .feature-box-centered {
-            background: rgba(1, 111, 50, 0.05);
-            border: 2px solid rgba(1, 111, 50, 0.3);
-            border-radius: 30px;
-            padding: 60px 80px;
-            text-align: left;
-        }
-
-        .feature-box-centered h2 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 32px;
-            letter-spacing: -1px;
-            text-align: left;
-        }
-
-        .feature-box-centered p {
-            font-size: 18px;
-            color: #8d958e;
-            line-height: 1.6;
-            margin-bottom: 40px;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .feature-list li {
-            font-size: 16px;
-            color: #8d958e;
-            padding: 12px 0;
-            padding-left: 32px;
-            position: relative;
-        }
-
-        .feature-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #2aff00;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .feature-cards-section {
-            padding: 120px 5% 120px;
-            min-height: auto;
-        }
-
-        section.feature-cards-section:first-of-type {
-            padding-top: 160px;
-        }
-
-        section.feature-cards-section:last-of-type {
-            padding-bottom: 160px;
-        }
-
-        .feature-cards-container li,
-        .flex.items-start-span {
-            color: var(--grey);
-        }
-
-        p, .text-grey-400, .text-lg {
-            color: var(--grey) !important;
-        }
-
-        /* dark mode - lighter grey text */
-        [data-theme="dark"] h2 {
-            color: #ffffff;
-        }
-
-        [data-theme="dark"] p {
-            color: #666666 !important;
-        }
-
-        [data-theme="dark"] li {
-            color: #b3b3b3;
-        }
-
-
-        [data-theme="dark"] li span {
-            color: #b3b3b3;
-        }
-
-        [data-theme="dark"] .checkmark,
-        [data-theme="dark"] li::before {
-            color: #2aff00 !important;
-        }
-
-        [data-theme="dark"] span.text-\[\#2aff00\],
-        [data-theme="dark"] .text-xl.font-bold {
-            color: #2aff00 !important;
-        }
-
-        [data-theme="dark"] li > span:not(text-xl) {
-            color: #b3b3b3 !important;
-        }
-
-        /* light mode - darker grey */
-        [data-theme="light"] h2 {
-            color: #0a0a0a;
-        }
-        
-        [data-theme="light"] p {
-            color: #b3b3b3 !important;
-        }
-
-        [data-theme="light"] li {
-            color: #0a0a0a !important;
-        }
-
-        [data-theme="light"] li span {
-            color: #0a0a0a !important;
-        }
-
-        [data-theme="light"] .text-grey-300 {
-            color: #0a0a0a !important;
-        }
-
-        [data-theme="light"] .checkmark,
-        [data-theme="light"] li::before {
-            color: #2aff00 !important;
-        }
-
-        [data-theme="light"] span.text-\[\#2aff00\],
-        [data-theme="light"] .text-xl.font-bold {
-            color: #2aff00 !important
-        }
-
-        [data-theme="light"] li > span:not(text-xl) {
-            color: #0a0a0a !important;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .feature-container {
-                padding: 0 5%;
-            }
-            
-            .feature-box-centered {
-                padding: 40px 30px;
-            }
-            
-            .feature-box-centered h2 {
-                font-size: 32px;
-            }
-        }
-
-      /* Border Beam Effect */
-        .border-beam-wrapper {
-            position: relative;
-        }
-
-        .border-beam-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(
-                transparent,
-                transparent,
-                transparent,
-                transparent,
-                transparent,
-                transparent,
-                transparent,
-                transparent,
-                transparent
-            );
-            animation: rotate-border 4s linear infinite;
-        }
-
-        .border-beam-wrapper::after {
-            content: '';
-            position: absolute;
-            inset: 2px;
-            background: rgba(10, 10, 10, 0.95);
-            border-radius: 28px;
-            z-index: 1;
-        }
-
-        .border-beam-wrapper > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        @keyframes rotate-border {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-                /* mobile menu toggle button */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 1001;
-        }
-
-        .mobile-menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 2px;
-            background: var(--fg);
-            transition: all 0.3s ease;
-        }
-
-        /* animate hamburger*/
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* mobile styles */
-        @media (max-width: 768px) {
-            /* show hamburger on mobile */
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            /* hide nav links by default */
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                right: -100%;
-                width: 100%;
-                max-width: 300px;
-                height: calc(100vh - 80px);
-                background: var(--bg);
-                border-left: 1px solid var(--border);
-                flex-direction: column;
-                padding: 40px 20px;
-                gap: 30px;
-                transition: right 0.3s ease;
-                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-            }
-
-            /* show menu when active */
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 12px 0;
-                font-size: 18px;
-                border-bottom: 1px solid var(--border);
-            }
-
-            /* theme toggle in mobile menu */
-            .theme-toggle-btn {
-                width: 100%;
-                border-radius: 12px;
-                height: 48px;
-            }
-        }
-
-        /* Footer CTA */
-        .footer-cta {
-            padding: 120px 5%;
-            text-align: center;
-        }
-
-        .footer-cta h2 {
-            font-size: 64px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-            color: var(--fg);
-        }
-
-        .footer-cta p {
-            font-size: 24px;
-            color: var(--gray);
-            margin-bottom: 48px;
-        }
-
-        .cta-secondary {
-            padding: 18px 48px;
-            background: transparent;
-            color: var(--fg);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin-left: 16px;
-        }
-
-        .cta-secondary:hover {
-            border-color: var(--fg);
-        }
-
-        footer {
-            padding: 60px 5% 40px;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            color: var(--gray);
-            font-size: 14px;
-        }
-
-        .feature-cards-section[style*="padding"] {
-            padding: 120px 5% !important;
-        }
-
-        @media (max-width: 1024px) {
-            .iphone {
-                width: 300px;
-                height: 618px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 { 
-                font-size: 48px; 
-            }
-
-            .app-hero {
-                padding: 100px 5% 60px;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .iphone {
-                width: min(85vw, 320px);
-                height: auto;
-                aspect-ratio: 340/700;
-            }
-            
-            .hero p { 
-                font-size: 18px; 
-            }
-            
-            .hero-text h1 {
-                font-size: 40px;
-            }
-            
-            .feature-text h2 {
-                font-size: 32px;
-            }
-            
-            .feature-section:nth-child(even) .feature-content {
-                direction: ltr;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            @media (max-width: 480px) {
-                .iphone {
-                    width: min(90vw, 280px);
-                    height: auto;
-                    aspect-ratio: 340 / 700;
-                }
-
-                .hero-text h1 {
-                    font-size: 32px;
-                }
-
-                .hero-text p {
-                    font-size: 14px;
-                }
-
-            @media (max-height: 600px) and (orientation: landscape) {
-                .app-hero {
-                    min-height: auto;
-                    padding: 80px 5% 40px;
-                }
-
-                .iphone {
-                    width: 240px;
-                    height: 494px;
-                }
-            }
-        }
-            /* Only reduce padding on mobile */
-            .feature-cards-section {
-                padding: 80px 5% !important; /* Keep decent spacing even on mobile */
-            }
-            
-            .feature-cards-container {
-                gap: 40px !important;
-            }
-            
-            .feature-cards-container article {
-                padding: 40px !important;
-                margin-left: 0 !important;
-                transform: none !important;
-            }
-        }
-        
-        section.featured-cards-section {
-            padding: 120px 5% !important;
-            min-height: auto !important;
-        }
-
-        section.featured-cards-section:last-of-type {
-            padding-bottom: 160px !important; /* Extra space before footer */
-            margin-bottom: 0 !important;
-        }
-
-        footer {
-            margin-top: 0 !important;
-            padding-top: 80px !important;
-        }
-    </style>
-
-    
+    <link rel="stylesheet" href="css/shared/base.css">
+    <link rel="stylesheet" href="css/shared/components.css">
+    <link rel="stylesheet" href="css/shared/responsive.css">
+    <link rel="stylesheet" href="css/shared/variables.css">
+    <link rel="stylesheet" href="css/shared/footer.css">
+
+    <link rel="stylesheet" href="css/layers/iphone_mockup.css">
+    <link rel="stylesheet" href="css/layers/buttons.css">
+    <link rel="stylesheet" href="css/layers/app_buttons.css">
+
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
     <nav>
         <a href="index.html" class="logo">
-            <img src="logo/sequorr-logo_01.svg" alt="Sequorr" class="logo-img">
+            <!-- Dark mode logo -->
+            <img src="logo/sequorr-logo_01.svg" alt="Sequorr" class="logo-img logo-dark">
+            <!-- Light mode logo -->
+            <img src="logo/sequorr-logo_02.svg" alt="Sequorr" class="logo-img logo-light">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -1112,7 +38,7 @@
             <li><a href="community.html">Community</a></li>
             <li><a href="demo.html">Demo</a></li>
             <li><a href="waitlist.html">Join Waitlist</a></li>
-            <li> 
+            <li>
                 <button data-theme-toggle class="theme-toggle-btn" aria-label="Toggle theme">
                     <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20">
                         <circle cx="12" cy="12" r="4" fill="currentColor"/>
@@ -1123,21 +49,15 @@
         </ul>
     </nav>
 
+    <!-- Hero Section with iPhone -->
     <section class="app-hero">
         <div class="hero-content">
             <div class="hero-text">
                 <h1>Your Fitness.<br><span class="gradient-text">Reimagined.</span></h1>
                 <p>Track every detail, celebrate every win, and rise with a community that pushes you forward. Sequorr transforms how you experience fitness.</p>
                 
-                <!--interactive button-->
-                <a href="waitlist.html" class="cta-button-interactive">
-                    <span class="button-text">Download Here</span>
-                    <div class="button-hover-content">
-                        <span>Download Here</span>
-                        <svg class="arrow-icon" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </div>
+                <a href="waitlist.html" class="cta-button"> Download Here</a>
+                    <div class="button-hover-content"></div>
                     <div class="button-bg-expand"></div>
                 </a>
             </div>
@@ -1244,150 +164,100 @@
         </div>
     </section>
     
-    <section class="featured-cards-section" padding="120px 5%;">
-        <div class="feature-cards-container" style="max-width: 1400px; margin: 0 auto; display: grid; gap: 60px;">
-            <article class="relative flex max-w-4xl flex-col items-start justify-between rounded-3xl p-16 border border-[rgba(1,111,50,0.3)] bg-[rgba(1,111,50,0.05)] ml-0 transform -translate-y-8">
-            <!-- Border Beam -->
-                <div 
-                    style="
-                        --border-width: 2;
-                        --size: 200;
-                        --color-from: #2aff00;
-                        --color-to: #1a9b00;
-                        --delay: 0s;
-                        --anchor: 90;
-                        --duration: 8;
-                    "
-                    class="pointer-events-none absolute inset-0 rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent] ![mask-clip:padding-box,border-box] ![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(white,white)] after:absolute after:aspect-square after:w-[calc(var(--size)*1px)] after:animate-border-beam after:[animation-delay:var(--delay)] after:[background:linear-gradient(to_left,var(--color-from),var(--color-to),transparent)] after:[offset-anchor:calc(var(--anchor)*1%)_50%] after:[offset-path:rect(0_auto_auto_0_round_calc(var(--size)*1px))]">
-                </div>
-            
-            <!-- Content -->
-                <div class="relative z-10 w-full">
-                    <h2 class="text-5xl font-bold mb-8">
-                        Track <span class="text-[#2aff00]">Everything</span> That Matters
-                    </h2>
+    <!-- Feature Cards Section -->
+    <section class="featured-cards-section">
+        <div class="feature-cards-container">
+            <!-- Card 1: Track Everything -->
+            <article class="feature-card feature-card-left">
+                <span class="corner-mark top-right">+</span>
+                <span class="corner-mark top-left">+</span>
+                <span class="corner-mark bottom-right">+</span>
+                <span class="corner-mark bottom-left">+</span>
+                <div class="feature-content">
+                    <h2>Track <span class="gradient-text">Everything</span> That Matters</h2>
                     
-                    <p class="text-lg text-gray-400 mb-10">
-                        From calories burned to sleep quality, Sequorr provides data that gives you the full picture of your fitness journey.
-                    </p>
+                    <p>From calories burned to sleep quality, Sequorr provides data that gives you the full picture of your fitness journey.</p>
                     
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Hydration monitoring throughout the day</span>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Hydration monitoring throughout the day</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Nutrition logging with smart meal recognition</span>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Nutrition logging with smart meal recognition</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Real-time activity tracking with precision metrics</span>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Real-time activity tracking with precision metrics</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Sleep analysis and recovery insights</span>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Sleep analysis and recovery insights</span>
                         </li>
                     </ul>
                 </div>
             </article>
-        </div>
-    </section>
 
-    <section class="featured-cards-section" padding="120px 5%;">
-        <div class="feature-cards-container" style="max-width: 1400px; margin: 0 auto; display: grid; gap: 60px;"></div>  
-            <article class="relative flex max-w-4xl flex-col items-start justify-between rounded-3xl p-16 border border-[rgba(1,111,50,0.3)] bg-[rgba(1,111,50,0.05)] ml-auto">
+            <!-- Card 2: Challenge Yourself -->
+            <article class="feature-card feature-card-right">
+                <span class="corner-mark top-right">+</span>
+                <span class="corner-mark top-left">+</span>
+                <span class="corner-mark bottom-right">+</span>
+                <span class="corner-mark bottom-left">+</span>
+                <div class="feature-content">
+                    <h2>Challenge <span class="gradient-text">Yourself</span> Daily</h2>
                     
-                <!-- Border Beam -->
-                <div 
-                    style="
-                        --border-width: 2;
-                        --size: 200;
-                        --color-from: #2aff00;
-                        --color-to: #1a9b00;
-                        --delay: 0s;
-                        --anchor: 90;
-                        --duration: 8;
-                    "
-                    class="pointer-events-none absolute inset-0 rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent] ![mask-clip:padding-box,border-box] ![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(white,white)] after:absolute after:aspect-square after:w-[calc(var(--size)*1px)] after:animate-border-beam after:[animation-delay:var(--delay)] after:[background:linear-gradient(to_left,var(--color-from),var(--color-to),transparent)] after:[offset-anchor:calc(var(--anchor)*1%)_50%] after:[offset-path:rect(0_auto_auto_0_round_calc(var(--size)*1px))]">
-                </div>
+                    <p>Set personalized goals, join community challenges, and watch your progress unfold. Every step forward is a victory worth celebrating.</p>
                     
-                <!-- Content -->
-                <div class="relative z-10 w-full">
-                    <h2 class="text-5xl font-bold mb-8">
-                        Challenge <span class="text-[#2aff00]">Yourself</span> Daily
-                    </h2>
-                        
-                    <p class="text-lg text-gray-400 mb-10">
-                        Set personalized goals, join community challenges, and watch your progress unfold. Every step forward is a victory worth celebrating.
-                    </p>
-                        
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Achievement badges and streak tracking</span>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Achievement badges and streak tracking</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Community leaderboards and social motivation</span>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Community leaderboards and social motivation</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Custom goal setting for any fitness level</span>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Custom goal setting for any fitness level</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Weekly challenges to keep you motivated</span>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Weekly challenges to keep you motivated</span>
                         </li>
                     </ul>
                 </div>
             </article>
-        </div>
-    </section>
 
-    <section class="featured-cards-section" padding="120px 5%;">
-        <div class="feature-cards-container" style="max-width: 1400px; margin: 0 auto; display: grid; gap: 60px;">
-            <article class="relative flex max-w-4xl flex-col items-start justify-between rounded-3xl p-16 border border-[rgba(1,111,50,0.3)] bg-[rgba(1,111,50,0.05)] ml-0 transform translate-y-8">
+            <!-- Card 3: Rise Together -->
+            <article class="feature-card feature-card-left">
+                <span class="corner-mark top-right">+</span>
+                <span class="corner-mark top-left">+</span>
+                <span class="corner-mark bottom-right">+</span>
+                <span class="corner-mark bottom-left">+</span>
+                <div class="feature-content">
+                    <h2>Rise <span class="gradient-text">Together</span></h2>
                     
-                <!-- Border Beam -->
-                <div 
-                    style="
-                        --border-width: 2;
-                        --size: 200;
-                        --color-from: #2aff00;
-                        --color-to: #1a9b00;
-                        --delay: 0s;
-                        --anchor: 90;
-                        --duration: 8;
-                    "
-                    class="pointer-events-none absolute inset-0 rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent] ![mask-clip:padding-box,border-box] ![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(white,white)] after:absolute after:aspect-square after:w-[calc(var(--size)*1px)] after:animate-border-beam after:[animation-delay:var(--delay)] after:[background:linear-gradient(to_left,var(--color-from),var(--color-to),transparent)] after:[offset-anchor:calc(var(--anchor)*1%)_50%] after:[offset-path:rect(0_auto_auto_0_round_calc(var(--size)*1px))]">
-                </div>
+                    <p>Share achievements, compete in challenges, and discover what you're truly capable of.</p>
                     
-                <!-- Content -->
-                <div class="relative z-10 w-full">
-                    <h2 class="text-5xl font-bold mb-8">
-                        Rise <span class="text-[#2aff00]">Together</span>
-                    </h2>
-                        
-                    <p class="text-lg text-gray-400 mb-10">
-                        Share achievements, compete in challenges, and discover what you're truly capable of.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Connect with friends and fitness communities</span>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Connect with friends and fitness communities</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Group challenges and team competitions</span>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Group challenges and team competitions</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Personalized health tips and motivation</span>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Personalized health tips and motivation</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-[#2aff00] text-xl font-bold">✓</span>
-                            <span class="text-gray-300">Social feed to share your wins and progress</span>
+                        <li>
+                            <span class="checkmark">✓</span>
+                            <span>Social feed to share your wins and progress</span>
                         </li>
                     </ul>
                 </div>
@@ -1399,111 +269,8 @@
         <p>&copy; 2025 Sequorr. Imagination Beyond Limits.</p>
     </footer>
 
-
-    <script>
-            // Better mobile button interaction
-            document.querySelectorAll('.cta-button-interactive').forEach(button => {
-                let touchTimeout;
-                
-                button.addEventListener('touchstart', function(e) {
-                    this.classList.add('button-active');
-                });
-                
-                button.addEventListener('touchend', function(e) {
-                    clearTimeout(touchTimeout);
-                    touchTimeout = setTimeout(() => {
-                        this.classList.remove('button-active');
-                    }, 300); // Keep animation for 300ms
-                });
-            });
-            // Theme Toggle Script 
-            (function() {
-                // Get system preference
-                const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
-                
-                function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
-                    if (localStorageTheme !== null) {
-                        return localStorageTheme;
-                    }
-                    if (systemSettingDark.matches) {
-                        return "dark";
-                    }
-                    return "light";
-                }
-                
-                function updateButton({ buttonEl, isDark }) {
-                    const newCta = isDark ? "Change to light theme" : "Change to dark theme";
-
-                    buttonEl.setAttribute("aria-label", newCta);
-                }
-                
-                function updateThemeOnHtmlEl({ theme }) {
-                    document.querySelector("html").setAttribute("data-theme", theme);
-                }
-                
-                // Get stored theme
-                const localStorageTheme = localStorage.getItem("theme");
-                
-                // Calculate current theme
-                let currentThemeSetting = calculateSettingAsThemeString({ 
-                    localStorageTheme, 
-                    systemSettingDark 
-                });
-                
-                // Target the button
-                const button = document.querySelector("[data-theme-toggle]");
-                
-                if (!button) {
-                    console.error("Theme toggle button not found");
-                    return;
-                }
-                
-                // Set initial state
-                updateButton({ buttonEl: button, isDark: currentThemeSetting === "dark" });
-                updateThemeOnHtmlEl({ theme: currentThemeSetting });
-                
-                // Add click listener
-                button.addEventListener("click", () => {
-                    const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
-                    
-                    // Update everything
-                    updateButton({ buttonEl: button, isDark: newTheme === "dark" });
-                    updateThemeOnHtmlEl({ theme: newTheme });
-                    localStorage.setItem("theme", newTheme);
-                    
-                    // Update current theme in memory
-                    currentThemeSetting = newTheme;
-                });
-            })();
-        </script>
-
-        <script>
-        // Mobile menu toggle
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', () => {
-                mobileMenuToggle.classList.toggle('active');
-                navLinks.classList.toggle('active');
-            });
-            
-            // Close menu when clicking a link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                });
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('nav')) {
-                    mobileMenuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                }
-            });
-        }
-        </script>
+    <script src="js/shared/menu.js"></script>
+    <script src="js/shared/theme.js"></script>
+    <script src="js/app.js"></script>
     </body>
 </html>
