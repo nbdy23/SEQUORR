@@ -49,25 +49,31 @@
     }
     
     let beams = [];
-    const positions = getCirclePositions();
-    
-    positions.sources.forEach((source, i) => {
-        beams.push({
-            from: source,
-            to: positions.center,
-            progress: i * 0.2,
-            speed: 0.008,
-            delay: i * 0.2
+
+    function initializeBeams() {
+        beams = [];
+        const positions = getCirclePositions();
+
+        positions.sources.forEach((source, i) => {
+            beams.push({
+                from: source,
+                to: positions.center,
+                progress: i * 0.2,
+                speed: 0.008,
+                delay: i * 0.2
+            });
         });
-    });
-    
-    beams.push({
-        from: positions.center,
-        to: positions.target,
-        progress: 0,
-        speed: 0.008,
-        delay: 1
-    });
+
+        beams.push({
+            from: positions.center,
+            to: positions.target,
+            progress: 0,
+            speed: 0.008,
+            delay: 1
+        });
+    }
+
+    initializeBeams();
     
     function drawBeam(from, to, progress) {
         const x = from.x + (to.x - from.x) * progress;
@@ -119,26 +125,7 @@
     window.addEventListener('resize', () => {
         beamCanvas.width = beamContainer.offsetWidth;
         beamCanvas.height = beamContainer.offsetHeight;
-        beams = [];
-        const positions = getCirclePositions();
-        
-        positions.sources.forEach((source, i) => {
-            beams.push({
-                from: source,
-                to: positions.center,
-                progress: i * 0.2,
-                speed: 0.008,
-                delay: i * 0.2
-            });
-        });
-        
-        beams.push({
-            from: positions.center,
-            to: positions.target,
-            progress: 0,
-            speed: 0.008,
-            delay: 1
-        });
+        initializeBeams();
     });
     
     animate();
