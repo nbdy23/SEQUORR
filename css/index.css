@@ -31,14 +31,6 @@
     display: flex;
     align-items: center;
     padding: 100px 5%;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-}
-
-.module.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .module-visual {
